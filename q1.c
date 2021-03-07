@@ -23,37 +23,30 @@ point of time.
 *******************************************************************/
 #include <stdio.h>
 
-#define P_NUM 5//6
+#define P_NUM 6
 #define R_NUM 4
 
 //need to take in 4 inputs
-/*
-1)Input 1: the number of total instances of resource type A.  
-(e.g., entering 50, means there are 50 instances of resource type A).
-2)Input 2: the number of total instances of resource type B. 
-3)Input 3: the number of total instances of resource type C. 
-4)Input 4: the number of total instances of resource type D. 
-*/
 void getResInput(int avail[R_NUM])
 {
     while(printf("Enter the number of total instances of resource type A.\n")
-    && scanf("%d", &avail[0]) != 1) //this loops as long as the input is invalid
+    && scanf("%d", &avail[0]) != 1) //this loops while the input is invalid
     //aka it will ask again
         scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
         
     while(printf("Enter the number of total instances of resource type B.\n")
-    && scanf("%d", &avail[1]) != 1) //this loops as long as the input is invalid
+    && scanf("%d", &avail[1]) != 1) //this loops while the input is invalid
     //aka it will ask again
         scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
         
     while(printf("Enter the number of total instances of resource type C.\n")
-    && scanf("%d", &avail[2]) != 1) //this loops as long as the input is invalid
+    && scanf("%d", &avail[2]) != 1) //this loops while the input is invalid
     //aka it will ask again
         scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
         
     
     while(printf("Enter the number of total instances of resource type D.\n")
-    && scanf("%d", &avail[3]) != 1) //this loops as long as the input is invalid
+    && scanf("%d", &avail[3]) != 1) //this loops while the input is invalid
     //aka it will ask again
         scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
     
@@ -126,31 +119,33 @@ const int avail[R_NUM], int safeSeq[P_NUM])
     int work[R_NUM] = {0};
     for(int i = 0; i < R_NUM; i++) work[i] = avail[i];
     
-    while(count < P_NUM)
+    //if count == P_NUM it means that all processes have been ran
+    while(count < P_NUM) 
     {
-        int flag = 0;
+        int flag = 0; //flag to check if we should break or not
         for (int i = 0; i <P_NUM; i++)
         {
-            if(visited[i] == 0)
+            if(visited[i] == 0) //check first unvisited process
             {
                 int j = 0;
-                for(j = 0; j < R_NUM; j++)
+                for(j = 0; j < R_NUM; j++) //check each resource
                     if(need[i][j] > work[j])
                         break; //need more than current avail
-                if(j == R_NUM)
+                //this means the process has all the resources it needs
+                if(j == R_NUM) 
                 {
-                    safeSeq[count++]=i;
-                    visited[i] = 1;
-                    flag = 1;
+                    safeSeq[count++]=i; //so we add it to the safeSeq
+                    visited[i] = 1; //change change it to visited
+                    flag = 1; //at least one process can run
                     for(j=0; j<R_NUM; j++)
-                        work[j] += alloc[i][j];
+                        work[j] += alloc[i][j]; //release allocated
                 }
             }
         }
-        if (flag == 0)
+        if (flag == 0) //this means no processes can run
             break;
     }
-    if (count < P_NUM)
+    if (count < P_NUM) //this means that there is no safe sequence
     {
         printf("unsafe state!\n");
         printf("current avail resource:\n");
@@ -158,7 +153,7 @@ const int avail[R_NUM], int safeSeq[P_NUM])
         printf("sequence:\n");
         printSeq(safeSeq, P_NUM, 0);
     }
-    else
+    else //safe sequence
     {
         printf("safe state!\n");
         printSeq(safeSeq, P_NUM, 1);
