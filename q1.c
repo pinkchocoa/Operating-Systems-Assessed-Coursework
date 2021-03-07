@@ -112,12 +112,14 @@ void printSeq(const int* r, int size, int flag)
 
 void safety(const int alloc[P_NUM][R_NUM], 
 const int max[P_NUM][R_NUM], const int need[P_NUM][R_NUM], 
-const int avail[R_NUM], int safeSeq[P_NUM])
+const int avail[R_NUM])
 {
     int count = 0;
     int visited[P_NUM] = {0};
+    int safeSeq[P_NUM];
     int work[R_NUM] = {0};
     for(int i = 0; i < R_NUM; i++) work[i] = avail[i];
+    for(int i = 0; i < P_NUM; i++) safeSeq[i] = -1;
     
     //if count == P_NUM it means that all processes have been ran
     while(count < P_NUM) 
@@ -184,8 +186,7 @@ int main()
     int minRes[R_NUM] = {0};
     int need[P_NUM][R_NUM] = {0};
     int total[P_NUM][R_NUM] = {0};
-    int safeSeq[P_NUM];
-    for(int i = 0; i < P_NUM; i++) safeSeq[i] = -1;
+    
     
     getResInput(avail);
     printf("avail res:\n");
@@ -207,6 +208,6 @@ int main()
     calMinResource(alloc, minRes);
     printR(minRes, R_NUM);
     
-    safety(alloc,max,need,avail,safeSeq);
+    safety(alloc,max,need,avail);
     return 0;
 }
