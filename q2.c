@@ -47,6 +47,7 @@ void firstFit(const int m[MEM_PART], const int p[INPUT_PROC])
             }
         }
     }
+    printf("\nFirst fit: \n");
     printRes(m, p, inUse);
 }
 
@@ -58,9 +59,35 @@ Produces the smallest leftover hole
 void bestFit(const int m[MEM_PART], const int p[INPUT_PROC])
 {
     int inUse[MEM_PART];
+    int bestIdx = -1;
+    int tempDiff = 999;
     //set all as -1 as free, otherwise set it to the process that is taken by
     for(int i = 0; i < MEM_PART; i++) inUse[i] = -1;
-    //your code here
+    
+    for(int j = 0; j < INPUT_PROC; j++)
+    {
+        bestIdx = -1;
+        //iterate through the memory paritions
+        for (int i = 0; i < MEM_PART; i++)
+        {
+            if(inUse[i] == -1 && m[i] >= p[j])
+            {
+                if(bestIdx == -1)
+                {
+                    tempDiff = m[i] - p[j];
+                    bestIdx = i;
+                }
+                else if(tempDiff > (m[i] - p[j]))
+                {
+                    tempDiff = m[i] - p[j];
+                    bestIdx = i;
+                }
+            }
+        }
+        if(bestIdx != -1)
+            inUse[bestIdx] = j;
+    }
+    printf("\nBest fit: \n");
     printRes(m, p, inUse);
 }
 
@@ -72,9 +99,35 @@ Produces the largest leftover hole
 void worstFit(const int m[MEM_PART], const int p[INPUT_PROC])
 {
     int inUse[MEM_PART];
+    int worstIdx = -1;
+    int tempDiff = 0;
     //set all as -1 as free, otherwise set it to the process that is taken by
     for(int i = 0; i < MEM_PART; i++) inUse[i] = -1;
-    //your code here
+    
+    for(int j = 0; j < INPUT_PROC; j++)
+    {
+        worstIdx = -1;
+        //iterate through the memory paritions
+        for (int i = 0; i < MEM_PART; i++)
+        {
+            if(inUse[i] == -1 && m[i] >= p[j])
+            {
+                if(worstIdx == -1)
+                {
+                    tempDiff = m[i] - p[j];
+                    worstIdx = i;
+                }
+                else if(tempDiff < (m[i] - p[j]))
+                {
+                    tempDiff = m[i] - p[j];
+                    worstIdx = i;
+                }
+            }
+        }
+        if(worstIdx != -1)
+            inUse[worstIdx] = j;
+    }
+    printf("\nWorst fit: \n");
     printRes(m, p, inUse);
 }
 
