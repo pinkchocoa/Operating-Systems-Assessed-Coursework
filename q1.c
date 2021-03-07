@@ -100,7 +100,24 @@ const int max[P_NUM][R_NUM], int need[P_NUM][R_NUM])
             need[i][j] = max[i][j]-a[i][j];
 }
 
-int safety(const int alloc[P_NUM][R_NUM], 
+void printSeq(const int* r, int size, int flag)
+{
+    if (flag == 1) //complete sequence
+    {
+        for(int i = 0; i < P_NUM; i++)
+            if (i != P_NUM-1) printf("P%d ->", r[i]);
+            else printf("P%d", r[i]);
+    }
+    else
+    {
+        for(int i = 0; i < P_NUM; i++)
+            if (r[i+1] != -1) printf("P%d ->", r[i]);
+            else if(r[i] != -1) printf("P%d", r[i]);
+            else break;
+    }
+}
+
+void safety(const int alloc[P_NUM][R_NUM], 
 const int max[P_NUM][R_NUM], const int need[P_NUM][R_NUM], 
 const int avail[R_NUM], int safeSeq[P_NUM])
 {
@@ -134,9 +151,18 @@ const int avail[R_NUM], int safeSeq[P_NUM])
             break;
     }
     if (count < P_NUM)
-        return 0;
+    {
+        printf("unsafe state!\n");
+        printf("current avail resource:\n");
+        printR(work, R_NUM);
+        printf("sequence:\n");
+        printSeq(safeSeq, P_NUM, 0);
+    }
     else
-        return 1;
+    {
+        printf("safe state!\n");
+        printSeq(safeSeq, P_NUM, 1);
+    }
 }
 
 int main()
@@ -163,7 +189,8 @@ int main()
     int minRes[R_NUM] = {0};
     int need[P_NUM][R_NUM] = {0};
     int total[P_NUM][R_NUM] = {0};
-    int safeSeq[P_NUM] = {0};
+    int safeSeq[P_NUM];
+    for(int i = 0; i < P_NUM; i++) safeSeq[i] = -1;
     
     getResInput(avail);
     printf("avail res:\n");
@@ -185,13 +212,6 @@ int main()
     calMinResource(alloc, minRes);
     printR(minRes, R_NUM);
     
-    if(safety(alloc,max,need,avail,safeSeq) == 1)
-    {
-        printf("safe state!\n");
-        printR(safeSeq, P_NUM);
-    }
-    else
-        printf("unsafe state!\n");
-
+    safety(alloc,max,need,avail,safeSeq);
     return 0;
 }
