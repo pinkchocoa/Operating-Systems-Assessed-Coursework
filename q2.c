@@ -69,12 +69,39 @@ Worst-fit:  Allocate the largest hole;
 must also search entire list 
 Produces the largest leftover hole
 */
-void worstFit(const int m[MEM_PART], const int p[INPUT_PROC])
+void worstFit(int m[MEM_PART], const int p[INPUT_PROC])
 {
     int inUse[MEM_PART];
+    int worstIndex = -1;
+    int biggestGap = 0;
     //set all as -1 as free, otherwise set it to the process that is taken by
     for(int i = 0; i < MEM_PART; i++) inUse[i] = -1;
-    //your code here
+    
+    for(int j = 0; j < INPUT_PROC; j++)
+    {
+        worstIndex = -1;
+        //iterate through the memory paritions
+        for (int i = 0; i < MEM_PART; i++)
+        {
+            if(inUse[i] == -1 && m[i] >= p[j])
+            {
+                if(worstIndex == -1)
+                {
+                    biggestGap = m[i] - p[j];
+                    worstIndex = i;
+                }
+                else if(biggestGap < (m[i] - p[j]))
+                {
+                    biggestGap = m[i] - p[j];
+                    worstIndex = i;
+                }
+            }
+        }
+        if(worstIndex != -1)
+            inUse[worstIndex] = j;
+            m[worstIndex] -= p[j];
+    }
+    printf("\nWorst fit: \n");
     printRes(m, p, inUse);
 }
 
