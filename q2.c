@@ -47,6 +47,7 @@ void firstFit(const int m[MEM_PART], const int p[INPUT_PROC])
             }
         }
     }
+    printf("\nFirst Fit: \n");
     printRes(m, p, inUse);
 }
 
@@ -58,10 +59,32 @@ Produces the smallest leftover hole
 void bestFit(const int m[MEM_PART], const int p[INPUT_PROC])
 {
     int inUse[MEM_PART];
+    int s = -1; // empty, smallest 
     //set all as -1 as free, otherwise set it to the process that is taken by
     for(int i = 0; i < MEM_PART; i++) inUse[i] = -1;
-    //your code here
+
+    //iterrate the input processes
+    for(int j = 0; j < INPUT_PROC; j++)
+    {
+        s = -1; // reset smallest to empty and to use it again
+        //iterate through the memory paritions
+        for (int i = 0; i < MEM_PART; i++)
+        {
+            //check if memory partition is taken and mem partition is bigger then input process
+            if(inUse[i] == -1 && m[i] >= p[j])
+            {
+                if(s == -1) s = i; //if s is empty store it into smallest
+                if(m[i] < m[s]) // if smallest is smaller then the next mem partition then replaces and store in smallest
+                {
+                    s = i;
+                }
+            }
+        }
+        if(s != -1) inUse[s] = j; //if smallest not empty then assign the current input process to the smallest mem partiton stored in smallest
+    }
+    printf("\nBest Fit: \n");
     printRes(m, p, inUse);
+   
 }
 
 /*
