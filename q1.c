@@ -127,6 +127,9 @@ const int avail[R_NUM], const int psize, const int rsize)
                     flag = 1; //at least one process can run
                     for(j=0; j<rsize; j++)
                         work[j] += alloc[i][j]; //release allocated
+                        
+                    //TODO print out the sequence here
+                    //TODO print out the allocated here
                 }
             }
         }
@@ -155,7 +158,7 @@ const int avail[R_NUM], const int psize, const int rsize)
     printf("\n[ PROCESS ]\t[ ALLOCATION ]\t  [ MAX ]\t[ NEED ]\t[ AVAILABLE ]");
     for (int i = 0; i < psize; i++)
     {
-        printf("\nProcess %d\t   ", i);
+        printf("\n Process %d\t   ", i);
         for (int j = 0; j < rsize; j++)
             printf("%d ", alloc[i][j]);
         printf("\t  ");
@@ -189,9 +192,11 @@ void runProgram(const int psize, const int rsize)
     calMinResource(alloc, minRes, psize, rsize);
     
     printFormatting(alloc, max, need, avail, psize, rsize);
+    printf("min. resources:\n");
     printR(minRes, rsize);
+    printf("\n");
     
-    safety(alloc,max,need,avail, psize, rsize);
+    safety(alloc, max, need, avail, psize, rsize);
 }
 
 int main(int argc, char* argv[])
