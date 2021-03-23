@@ -21,51 +21,37 @@ point of time.
 */
 /* End Header
 *******************************************************************/
-#include <stdio.h>
+#include <stdio.h> //scanf, printf
+#include <stdlib.h> //used for atoi
 
-#define P_NUM 6
-#define R_NUM 4
+//too lazy to allocate memory dynamically...
+//c programs cannot take variables as array size
+#define P_NUM 100
+#define R_NUM 100
 
-//need to take in 4 inputs
-void getResInput(int avail[R_NUM])
+void getResInput(int avail[R_NUM], const int rsize)
 {
-    while(printf("Enter the number of total instances of resource type A.\n")
-    && scanf("%d", &avail[0]) != 1) //this loops while the input is invalid
+    for(int i = 0; i < rsize; i++)
+    while(printf("Enter the number of total instances of resource type %d.\n", i)
+    && scanf("%d", &avail[i]) != 1) //this loops while the input is invalid
     //aka it will ask again
-        scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
-        
-    while(printf("Enter the number of total instances of resource type B.\n")
-    && scanf("%d", &avail[1]) != 1) //this loops while the input is invalid
-    //aka it will ask again
-        scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
-        
-    while(printf("Enter the number of total instances of resource type C.\n")
-    && scanf("%d", &avail[2]) != 1) //this loops while the input is invalid
-    //aka it will ask again
-        scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
-        
-    
-    while(printf("Enter the number of total instances of resource type D.\n")
-    && scanf("%d", &avail[3]) != 1) //this loops while the input is invalid
-    //aka it will ask again
-        scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
-    
+        scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/    
 }
 
-void getArrayInput(int array[P_NUM][R_NUM])
+void getArrayInput(int array[P_NUM][R_NUM], const int psize, const int rsize)
 {
-    for(int i = 0; i < P_NUM; i++)
-        for(int j = 0; j < R_NUM; j++)
+    for(int i = 0; i < psize; i++)
+        for(int j = 0; j < rsize; j++)
             while(printf("Enter the number for[%d][%d]", i, j) && 
             scanf("%d", &array[i][j]) != 1)
             scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
 }
 
-void printArray(const int array[P_NUM][R_NUM])
+void printArray(const int array[P_NUM][R_NUM], const int psize, const int rsize)
 {
-    for(int i = 0; i < P_NUM; i++)
+    for(int i = 0; i < psize; i++)
     {
-        for(int j = 0; j < R_NUM; j++)
+        for(int j = 0; j < rsize; j++)
             printf("%d ", array[i][j]);
         printf("\n");
     }
@@ -78,32 +64,32 @@ void printR(const int* r, int size)
     printf("\n");
 }
 
-void calMinResource(const int a[P_NUM][R_NUM], int minR[R_NUM])
+void calMinResource(const int a[P_NUM][R_NUM], int minR[R_NUM], const int psize, const int rsize)
 {
-    for(int j = 0; j < R_NUM; j++)
-        for(int i = 0; i < P_NUM; i++)
+    for(int j = 0; j < rsize; j++)
+        for(int i = 0; i < psize; i++)
             minR[j]+=a[i][j];
 }
 
 void calNeed(const int a[P_NUM][R_NUM], 
-const int max[P_NUM][R_NUM], int need[P_NUM][R_NUM])
+const int max[P_NUM][R_NUM], int need[P_NUM][R_NUM], const int psize, const int rsize)
 {
-    for(int i = 0; i < P_NUM; i++)
-        for(int j = 0; j < R_NUM; j++)
+    for(int i = 0; i < psize; i++)
+        for(int j = 0; j < rsize; j++)
             need[i][j] = max[i][j]-a[i][j];
 }
 
-void printSeq(const int* r, int size, int flag)
+void printSeq(const int* r, int size, int flag, const int psize, const int rsize)
 {
     if (flag == 1) //complete sequence
     {
-        for(int i = 0; i < P_NUM; i++)
-            if (i != P_NUM-1) printf("P%d ->", r[i]);
+        for(int i = 0; i < psize; i++)
+            if (i != psize-1) printf("P%d ->", r[i]);
             else printf("P%d", r[i]);
     }
     else
     {
-        for(int i = 0; i < P_NUM; i++)
+        for(int i = 0; i < psize; i++)
             if (r[i+1] != -1) printf("P%d ->", r[i]);
             else if(r[i] != -1) printf("P%d", r[i]);
             else break;
@@ -112,34 +98,34 @@ void printSeq(const int* r, int size, int flag)
 
 void safety(const int alloc[P_NUM][R_NUM], 
 const int max[P_NUM][R_NUM], const int need[P_NUM][R_NUM], 
-const int avail[R_NUM])
+const int avail[R_NUM], const int psize, const int rsize)
 {
     int count = 0;
     int visited[P_NUM] = {0};
     int safeSeq[P_NUM];
     int work[R_NUM] = {0};
-    for(int i = 0; i < R_NUM; i++) work[i] = avail[i];
-    for(int i = 0; i < P_NUM; i++) safeSeq[i] = -1;
+    for(int i = 0; i < rsize; i++) work[i] = avail[i];
+    for(int i = 0; i < psize; i++) safeSeq[i] = -1;
     
-    //if count == P_NUM it means that all processes have been ran
-    while(count < P_NUM) 
+    //if count == psize it means that all processes have been ran
+    while(count < psize) 
     {
         int flag = 0; //flag to check if we should break or not
-        for (int i = 0; i <P_NUM; i++)
+        for (int i = 0; i <psize; i++)
         {
             if(visited[i] == 0) //check first unvisited process
             {
                 int j = 0;
-                for(j = 0; j < R_NUM; j++) //check each resource
+                for(j = 0; j < rsize; j++) //check each resource
                     if(need[i][j] > work[j])
                         break; //need more than current avail
                 //this means the process has all the resources it needs
-                if(j == R_NUM) 
+                if(j == rsize) 
                 {
                     safeSeq[count++]=i; //so we add it to the safeSeq
                     visited[i] = 1; //change change it to visited
                     flag = 1; //at least one process can run
-                    for(j=0; j<R_NUM; j++)
+                    for(j=0; j<rsize; j++)
                         work[j] += alloc[i][j]; //release allocated
                 }
             }
@@ -147,67 +133,95 @@ const int avail[R_NUM])
         if (flag == 0) //this means no processes can run
             break;
     }
-    if (count < P_NUM) //this means that there is no safe sequence
+    if (count < psize) //this means that there is no safe sequence
     {
         printf("unsafe state!\n");
         printf("current avail resource:\n");
-        printR(work, R_NUM);
+        printR(work, rsize);
         printf("sequence:\n");
-        printSeq(safeSeq, P_NUM, 0);
+        printSeq(safeSeq, psize, 0, psize, rsize);
     }
     else //safe sequence
     {
         printf("safe state!\n");
-        printSeq(safeSeq, P_NUM, 1);
+        printSeq(safeSeq, psize, 1, psize, rsize);
     }
 }
 
-int main()
+void printFormatting(const int alloc[P_NUM][R_NUM], 
+const int max[P_NUM][R_NUM], const int need[P_NUM][R_NUM], 
+const int avail[R_NUM], const int psize, const int rsize)
 {
-    int alloc[P_NUM][R_NUM]={
-        /*
-        {2,1,3,3},
-        {2,3,1,2},
-        {3,3,3,1},
-        {2,1,3,4},
-        {3,2,2,5},
-        {2,1,2,3},*/
-    };
-    int max[P_NUM][R_NUM]={
-        /*
-        {7,3,4,5},
-        {8,6,2,1},
-        {9,5,5,6},
-        {6,4,6,3},
-        {8,3,2,4},
-        {8,3,2,3},*/
-    };
+    printf("\n[ PROCESS ]\t[ ALLOCATION ]\t  [ MAX ]\t[ NEED ]\t[ AVAILABLE ]");
+    for (int i = 0; i < psize; i++)
+    {
+        printf("\nProcess %d\t   ", i);
+        for (int j = 0; j < rsize; j++)
+            printf("%d ", alloc[i][j]);
+        printf("\t  ");
+        for (int j = 0; j < rsize; j++)
+            printf("%d ", max[i][j]);
+        printf("\t");
+        for (int j = 0; j < rsize; j++)
+            printf("%d ", need[i][j]);
+        printf("\t   ");
+        if (i == 0)
+            for (int j = 0; j < rsize; j++)
+                printf("%d ", avail[j]);
+    }
+    printf("\n\n");
+}
+
+void runProgram(const int psize, const int rsize)
+{
+    int alloc[P_NUM][R_NUM]={};
+    int max[P_NUM][R_NUM]={};
     int avail[R_NUM] = {0};
     int minRes[R_NUM] = {0};
     int need[P_NUM][R_NUM] = {0};
     int total[P_NUM][R_NUM] = {0};
     
+    getResInput(avail, rsize);
+    getArrayInput(alloc, psize, rsize);
+    getArrayInput(max, psize, rsize);
     
-    getResInput(avail);
-    printf("avail res:\n");
-    printR(avail, R_NUM);
+    calNeed(alloc,max,need, psize, rsize);
+    calMinResource(alloc, minRes, psize, rsize);
     
-    printf("alloc:\n");
-    getArrayInput(alloc);
-    printArray(alloc);
+    printFormatting(alloc, max, need, avail, psize, rsize);
+    printR(minRes, rsize);
     
-    printf("max:\n");
-    getArrayInput(max);
-    printArray(max);
+    safety(alloc,max,need,avail, psize, rsize);
+}
+
+int main(int argc, char* argv[])
+{
+    int psize = 6;
+    int rsize = 4;
+    if(argc <= 1) //no arguments
+    {
+        printf("Process Number: %d, Resource Number: %d", psize, rsize);
+    }
+    else if(argc == 3)
+    {
+        //argv[0] is program name
+        //./a.exe 5 6
+        //argv[0] == "a.exe"
+        //argv[1] == "5"
+        //argv[2] == "6"
+        psize = atoi(argv[1]);
+        rsize = atoi(argv[2]);
+        printf("Process Number: %d, Resource Number: %d", psize, rsize);
+    }
+    else
+    {
+        printf("Two arguments expected.\n");
+        printf("Process Number and Resource Number.\n");
+        return -1;
+    }
     
-    printf("need:\n");
-    calNeed(alloc,max,need);
-    printArray(need);
+    runProgram(psize, rsize);   
     
-    printf("min res:\n");
-    calMinResource(alloc, minRes);
-    printR(minRes, R_NUM);
     
-    safety(alloc,max,need,avail);
     return 0;
 }
