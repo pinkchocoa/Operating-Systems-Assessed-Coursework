@@ -42,9 +42,13 @@ int main(int argc, char* argv[])
                 testCase3(); break;
             case 4:
                 testCase4(); break;
+            case 5:
+                testCase5(); break;
+            case 6:
+                testCase6(); break;
             default:
                 printf("Invalid test case.\n"); 
-                printf("Test cases available: 1 - 4.\n"); 
+                printf("Test cases available: 1 - 6.\n"); 
                 break;
         }
     }
@@ -109,21 +113,6 @@ const int avail[R_NUM], const int psize, const int rsize)
     printf("\n\n");
 }
 
-void printSeqFormatting(const int alloc[P_NUM][R_NUM], const int avail[R_NUM], 
-const int psize, const int rsize)
-{
-    printf("\n[ PROCESS ]\t[ ALLOCATION ]\t[ AVAILABLE ]");
-    for (int i = 0; i < psize; i++)
-    {
-        printf("\n Process %d\t   ", i);
-        printArr(alloc[i], rsize);
-        printf("\t   ");
-        if (i == 0)
-            printArr(avail, rsize);
-    }
-    printf("\n\n");
-}
-
 void calMinResource(const int a[P_NUM][R_NUM], int minR[R_NUM], 
 const int psize, const int rsize)
 {
@@ -149,20 +138,20 @@ const int psize, const int rsize)
         printf("Safe State.\n");
         for(int i = 0; i < psize; i++)
             if (i != psize-1) printf("P%d -> ", r[i]);
-            else printf("P%d", r[i]);
+            else printf("P%d\n", r[i]);
     }
     else
     {
         printf("Unsafe State.\n");
         for(int i = 0; i < psize; i++)
             if (r[i+1] != -1) printf("P%d -> ", r[i]);
-            else if(r[i] != -1) printf("P%d", r[i]);
+            else if(r[i] != -1) printf("P%d\n", r[i]);
             else break;
     }
 }
 
 void safety(int alloc[P_NUM][R_NUM], 
-const int max[P_NUM][R_NUM], const int need[P_NUM][R_NUM], 
+const int max[P_NUM][R_NUM], int need[P_NUM][R_NUM], 
 const int avail[R_NUM], const int psize, const int rsize)
 {
     int count = 0;
@@ -207,8 +196,9 @@ const int avail[R_NUM], const int psize, const int rsize)
         {
             work[j] += alloc[safeSeq[i]][j]; 
             alloc[safeSeq[i]][j] = 0;
+            need[safeSeq[i]][j] = 0;
         }
-        printSeqFormatting(alloc, work, psize, rsize);
+        printFormatting(alloc, max, need, work, psize, rsize);
     }
     printSeq(safeSeq, psize, flag, psize, rsize);
 }
@@ -236,7 +226,7 @@ void runProgram(const int psize, const int rsize, const int setValue)
     printFormatting(alloc, max, need, avail, psize, rsize);
     printf("Min. resources:\n");
     printArr(minRes, rsize);
-    printf("\n");
+    printf("\n\n");
     
     safety(alloc, max, need, avail, psize, rsize);
 }

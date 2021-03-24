@@ -1,3 +1,16 @@
+/* Start Header
+*****************************************************************/
+/*!
+\file q1.h
+\author Jodie Moh
+\par email:
+\date 24/03/2021
+\brief
+This is a header file to q1.c, 
+*/
+/* End Header
+*******************************************************************/
+
 //too lazy to allocate memory dynamically...
 //c programs cannot take variables as array size
 #define P_NUM 100
@@ -6,7 +19,7 @@
 int psize = 6;
 int rsize = 4;
 int alloc[P_NUM][R_NUM]={};
-int max[P_NUM][R_NUM]={};
+int max[P_NUM][R_NUM]={0};
 int avail[R_NUM] = {0};
 int minRes[R_NUM] = {0};
 int need[P_NUM][R_NUM] = {0};
@@ -22,9 +35,6 @@ void printFormatting(const int alloc[P_NUM][R_NUM],
 const int max[P_NUM][R_NUM], const int need[P_NUM][R_NUM], 
 const int avail[R_NUM], const int psize, const int rsize);
 
-void printSeqFormatting(const int alloc[P_NUM][R_NUM], const int avail[R_NUM], 
-const int psize, const int rsize);
-
 void calMinResource(const int a[P_NUM][R_NUM], int minR[R_NUM], 
 const int psize, const int rsize);
 
@@ -36,7 +46,7 @@ void printSeq(const int* r, int size, int flag,
 const int psize, const int rsize);
 
 void safety(int alloc[P_NUM][R_NUM], 
-const int max[P_NUM][R_NUM], const int need[P_NUM][R_NUM], 
+const int max[P_NUM][R_NUM], int need[P_NUM][R_NUM], 
 const int avail[R_NUM], const int psize, const int rsize);
 
 void getInputs(const int psize, const int rsize);
