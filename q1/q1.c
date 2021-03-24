@@ -38,18 +38,18 @@ int main(int argc, char* argv[])
                 testCase1(); break;
             case 2:
                 testCase2(); break;
+            case 3:
+                testCase3(); break;
+            case 4:
+                testCase4(); break;
             default:
                 printf("Invalid test case.\n"); 
+                printf("Test cases available: 1 - 4.\n"); 
                 break;
         }
     }
     else if(argc == 3)
     {
-        //argv[0] is program name
-        //./a.exe 5 6
-        //argv[0] == "a.exe"
-        //argv[1] == "5"
-        //argv[2] == "6"
         psize = atoi(argv[1]);
         rsize = atoi(argv[2]);
         runProgram(psize, rsize, 1);
