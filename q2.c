@@ -47,7 +47,7 @@ void firstFit(const int m[MEM_PART], const int p[INPUT_PROC])
             }
         }
     }
-    printf("\nFirst Fit: \n");
+    printf("\nFirst fit: \n");
     printRes(m, p, inUse);
 }
 
@@ -59,32 +59,36 @@ Produces the smallest leftover hole
 void bestFit(const int m[MEM_PART], const int p[INPUT_PROC])
 {
     int inUse[MEM_PART];
-    int s = -1; // empty, smallest 
+    int bestIdx = -1;
+    int tempDiff = 999;
     //set all as -1 as free, otherwise set it to the process that is taken by
     for(int i = 0; i < MEM_PART; i++) inUse[i] = -1;
-
-    //iterrate the input processes
+    
     for(int j = 0; j < INPUT_PROC; j++)
     {
-        s = -1; // reset smallest to empty and to use it again
+        bestIdx = -1;
         //iterate through the memory paritions
         for (int i = 0; i < MEM_PART; i++)
         {
-            //check if memory partition is taken and mem partition is bigger then input process
             if(inUse[i] == -1 && m[i] >= p[j])
             {
-                if(s == -1) s = i; //if s is empty store it into smallest
-                if(m[i] < m[s]) // if smallest is smaller then the next mem partition then replaces and store in smallest
+                if(bestIdx == -1)
                 {
-                    s = i;
+                    tempDiff = m[i] - p[j];
+                    bestIdx = i;
+                }
+                else if(tempDiff > (m[i] - p[j]))
+                {
+                    tempDiff = m[i] - p[j];
+                    bestIdx = i;
                 }
             }
         }
-        if(s != -1) inUse[s] = j; //if smallest not empty then assign the current input process to the smallest mem partiton stored in smallest
+        if(bestIdx != -1)
+            inUse[bestIdx] = j;
     }
-    printf("\nBest Fit: \n");
+    printf("\nBest fit: \n");
     printRes(m, p, inUse);
-   
 }
 
 /*
@@ -95,33 +99,33 @@ Produces the largest leftover hole
 void worstFit(const int m[MEM_PART], const int p[INPUT_PROC])
 {
     int inUse[MEM_PART];
-    int worstIndex = -1;
-    int biggestGap = 0;
+    int worstIdx = -1;
+    int tempDiff = 0;
     //set all as -1 as free, otherwise set it to the process that is taken by
     for(int i = 0; i < MEM_PART; i++) inUse[i] = -1;
     
     for(int j = 0; j < INPUT_PROC; j++)
     {
-        worstIndex = -1;
+        worstIdx = -1;
         //iterate through the memory paritions
         for (int i = 0; i < MEM_PART; i++)
         {
             if(inUse[i] == -1 && m[i] >= p[j])
             {
-                if(worstIndex == -1)
+                if(worstIdx == -1)
                 {
-                    biggestGap = m[i] - p[j];
-                    worstIndex = i;
+                    tempDiff = m[i] - p[j];
+                    worstIdx = i;
                 }
-                else if(biggestGap < (m[i] - p[j]))
+                else if(tempDiff < (m[i] - p[j]))
                 {
-                    biggestGap = m[i] - p[j];
-                    worstIndex = i;
+                    tempDiff = m[i] - p[j];
+                    worstIdx = i;
                 }
             }
         }
-        if(worstIndex != -1)
-            inUse[worstIndex] = j;
+        if(worstIdx != -1)
+            inUse[worstIdx] = j;
     }
     printf("\nWorst fit: \n");
     printRes(m, p, inUse);
