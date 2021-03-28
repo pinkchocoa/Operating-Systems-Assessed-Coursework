@@ -51,7 +51,7 @@ void printInput(int p, int m, int pIdx, int mIdx)
     printf("leaving");
     for (int i = 0; i < MEM_PART; i++)
         if(inUse[i] == -1)
-            printf(" %3dKB,",  memPart[i]);
+            printf(" %3dKB ",  memPart[i]);
     printf("\n");
 }
 
