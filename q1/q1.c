@@ -60,8 +60,8 @@ int main(int argc, char* argv[])
     }
     else
     {
-        printf("One or Two arguments expected.\n");
-        printf("One argument: Test Case.\n");
+        printf("Zero, One or Two arguments expected.\n");
+        printf("One argument: Test Case Number.\n");
         printf("Two arguments: Process Number and Resource Number.\n");
         return -1;
     }

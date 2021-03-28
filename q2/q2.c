@@ -1,11 +1,12 @@
-#include <stdio.h>
+#include <stdio.h> /*scanf, printf*/
+#include <stdlib.h> /*used for atoi*/
 #include "q2.h"
 
-void getProcessInput(int a[PROC_NUM])
+void getProcessInput(int a[PROC_NUM], const int size)
 {
-    for(int i = 0; i < PROC_PART; i++)
+    for(int i = 0; i < size; i++)
     {
-        while(printf("Enter the size of process %d in KB.\n", i)
+        while(printf("\nEnter the size of partition %d in KB:", i)
         && scanf("%d", &a[i]) != 1) //this loops while the input is invalid
         //aka it will ask again
             scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
@@ -14,14 +15,30 @@ void getProcessInput(int a[PROC_NUM])
 
 void printRes(const int m[MEM_NUM], const int p[PROC_NUM], const int f[MEM_NUM])
 {
+    int count = 0;
+    for(int i = 0; i < PROC_PART; i++) notUse[i] = -1;
     for(int i = 0; i < MEM_PART; i++)
     {
         if(f[i] == -1) //free
+        {
             printf("Hole %d of size %dKB is not in use\n", i, m[i]);
+        }
         else //not free
         {
             printf("Hole %d of size %dKB is in use by process %d of size %dKB\n", 
             i, m[i], f[i], p[f[i]]);
+            notUse[f[i]] = 1;
+            count++;
+        }
+    }
+    if (count == PROC_PART)
+        printf("All processes have been allocated.\n");
+    else
+    {
+        for(int i = 0; i < PROC_PART; i++)
+        {
+            if (notUse[i] == -1)
+                printf("Process %d of size %dKB has to wait.\n", i, p[i]);
         }
     }
 }
@@ -44,7 +61,7 @@ void firstFit(const int m[MEM_NUM], const int p[PROC_NUM])
             }
         }
     }
-    printf("\nFirst fit: \n");
+    printf("\n\nFirst fit: \n");
     printRes(m, p, inUse);
 }
 
@@ -78,7 +95,7 @@ void bestFit(const int m[MEM_NUM], const int p[PROC_NUM])
         }
         if(s != -1) inUse[s] = j; //if smallest not empty then assign the current input process to the smallest mem partiton stored in smallest
     }
-    printf("\nBest Fit: \n");
+    printf("\n\nBest Fit: \n");
     printRes(m, p, inUse);
    
 }
@@ -118,15 +135,45 @@ void worstFit(const int m[MEM_NUM], const int p[PROC_NUM])
         if(worstIndex != -1)
             inUse[worstIndex] = j;
     }
-    printf("\nWorst fit: \n");
+    printf("\n\nWorst fit: \n");
     printRes(m, p, inUse);
 }
 
-int main()
+int runProgram(int getInput)
 {
-    getProcessInput(processInput);
-    firstFit(memPart, processInput);
-    bestFit(memPart, processInput);
-    worstFit(memPart, processInput);
+    printf("%d Memory partitions and %d Processes.", MEM_PART, PROC_PART);
+    if(getInput == 1)
+    {
+        printf("\n\nEnter the memory partitions.");
+        getProcessInput(memPart, MEM_PART);
+        printf("\n\nEnter the process partitions.");
+        getProcessInput(procPart, PROC_PART);
+        
+    }
+    firstFit(memPart, procPart);
+    bestFit(memPart, procPart);
+    worstFit(memPart, procPart);
+}
+
+int main(int argc, char* argv[])
+{
+    if(argc <= 1) /*no arguments*/
+        runProgram(1);
+    else if(argc == 2)
+    {
+    }
+    else if(argc == 3)
+    {
+        MEM_PART = atoi(argv[1]);
+        PROC_PART = atoi(argv[2]);
+        runProgram(1);
+    }
+    else
+    {
+        printf("Zero, One or Two arguments expected.\n");
+        printf("One argument: Test Case Number.\n");
+        printf("Two arguments: Number of Memory Partitions and Processes.\n");
+        return -1;
+    }
     return 0;
 }
