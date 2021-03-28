@@ -1,6 +1,7 @@
 #include <stdio.h> /*scanf, printf*/
 #include <stdlib.h> /*used for atoi*/
 #include "q2.h"
+#include "q2testCases.c"
 
 void getProcessInput(int a[PROC_NUM], const int size)
 {
@@ -161,6 +162,15 @@ int main(int argc, char* argv[])
         runProgram(1);
     else if(argc == 2)
     {
+        switch(atoi(argv[1]))
+        {
+            case 1:
+                testCase1(); break;
+            default:
+                printf("Invalid test case.\n"); 
+                printf("Test cases available: 1.\n"); 
+                break;
+        }
     }
     else if(argc == 3)
     {
