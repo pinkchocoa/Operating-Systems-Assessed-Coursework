@@ -3,6 +3,37 @@
 #include "q2.h"
 #include "q2testCases.c"
 
+int main(int argc, char* argv[])
+{
+    if(argc <= 1) /*no arguments*/
+        runProgram(1, 0);
+    else if(argc == 2)
+    {
+        switch(atoi(argv[1]))
+        {
+            case 1:
+                testCase1(); break;
+            default:
+                printf("Invalid test case.\n"); 
+                printf("Test cases available: 1.\n"); 
+                break;
+        }
+    }
+    else if(argc == 3)
+    {
+        MEM_PART = atoi(argv[1]);
+        PROC_PART = atoi(argv[2]);
+        runProgram(1, 1);
+    }
+    else
+    {
+        printf("Zero, One or Two arguments expected.\n");
+        printf("One argument: Test Case Number.\n");
+        printf("Two arguments: Number of Memory Partitions and Processes.\n");
+        return -1;
+    }
+    return 0;
+}
 void getProcessInput(int a[PROC_NUM], const int size)
 {
     for(int i = 0; i < size; i++)
@@ -203,36 +234,4 @@ int runProgram(int getInput, int r)
     }
     if (r == 1) runAll();
     else ask();
-}
-
-int main(int argc, char* argv[])
-{
-    if(argc <= 1) /*no arguments*/
-        runProgram(1, 0);
-    else if(argc == 2)
-    {
-        switch(atoi(argv[1]))
-        {
-            case 1:
-                testCase1(); break;
-            default:
-                printf("Invalid test case.\n"); 
-                printf("Test cases available: 1.\n"); 
-                break;
-        }
-    }
-    else if(argc == 3)
-    {
-        MEM_PART = atoi(argv[1]);
-        PROC_PART = atoi(argv[2]);
-        runProgram(1, 1);
-    }
-    else
-    {
-        printf("Zero, One or Two arguments expected.\n");
-        printf("One argument: Test Case Number.\n");
-        printf("Two arguments: Number of Memory Partitions and Processes.\n");
-        return -1;
-    }
-    return 0;
 }
