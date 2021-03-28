@@ -1,5 +1,5 @@
-#define MEM_NUM 100 //number of memory partitions
-#define PROC_NUM 100 //number of input processes
+#define MEM_NUM 100 /*number of memory partitions*/
+#define PROC_NUM 100 /*number of input processes*/
 
 int memPart[MEM_NUM] = {0};
 int procPart[PROC_NUM] = {0};
