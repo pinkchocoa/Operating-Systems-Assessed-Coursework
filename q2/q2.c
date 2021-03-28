@@ -23,11 +23,11 @@ void printRes(const int m[MEM_NUM], const int p[PROC_NUM], const int f[MEM_NUM])
     {
         if(f[i] == -1) //free
         {
-            printf("Hole %2d : %3dKB\n", i, m[i]);
+            printf("Partition %-2d : %-3dKB\n", i, m[i]);
         }
         else //not free
         {
-            printf("Hole %2d : %3dKB contains Processs%2d : %3dKB\n", 
+            printf("Partition %-2d : %-3dKB contains Processs %-2d : %-3dKB\n", 
             i, m[i], f[i], p[f[i]]);
             notUse[f[i]] = 1;
             count++;
@@ -40,14 +40,14 @@ void printRes(const int m[MEM_NUM], const int p[PROC_NUM], const int f[MEM_NUM])
         for(int i = 0; i < PROC_PART; i++)
         {
             if (notUse[i] == -1)
-                printf("%3dKB process%2d must wait, no memory space for it.\n", p[i], i);
+                printf("%-3dKB process %-2d must wait, no memory space for it.\n", p[i], i);
         }
     }
 }
 
-void printInput(int p, int m)
+void printInput(int p, int m, int pIdx, int mIdx)
 {
-    printf("%3dKB process is put in %3dKB partition, ", p, m);
+    printf("%-3dKB process%2d is put in %-3dKB partition %-2d, ", p, pIdx, m, mIdx);
     printf("leaving");
     for (int i = 0; i < MEM_PART; i++)
         if(inUse[i] == -1)
@@ -69,7 +69,7 @@ void firstFit(const int m[MEM_NUM], const int p[PROC_NUM])
             if(inUse[i] == -1 && m[i] >= p[j])
             {
                 inUse[i] = j; //set inUse to the process
-                printInput(p[j], m[i]);
+                printInput(p[j], m[i], j, i);
                 break;
             }
         }
@@ -108,7 +108,7 @@ void bestFit(const int m[MEM_NUM], const int p[PROC_NUM])
         }
         if(s != -1)
         {   inUse[s] = j; //if smallest not empty then assign the current input process to the smallest mem partiton stored in smallest
-            printInput(p[j], m[s]);
+            printInput(p[j], m[s], j, s);
         }
     }
     printf("\nSummary for best fit:\n");
@@ -151,7 +151,7 @@ void worstFit(const int m[MEM_NUM], const int p[PROC_NUM])
         if(worstIndex != -1)
         {
             inUse[worstIndex] = j;
-            printInput(p[j], m[worstIndex]);
+            printInput(p[j], m[worstIndex], j, worstIndex);
         }
     }
     printf("\nSummary for worst fit:\n");
