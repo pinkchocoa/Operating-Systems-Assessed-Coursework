@@ -15,5 +15,5 @@ void testCase1()
     MEM_PART = 12;
     PROC_PART = 10;
     changeVals(MEM_PART, PROC_PART, m, p);
-    runProgram(0, 0);
+    runProgram(0);
 }

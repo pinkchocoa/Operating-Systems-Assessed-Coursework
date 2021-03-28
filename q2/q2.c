@@ -6,7 +6,7 @@
 int main(int argc, char* argv[])
 {
     if(argc <= 1) /*no arguments*/
-        runProgram(1, 0);
+        runProgram(1);
     else if(argc == 2)
     {
         switch(atoi(argv[1]))
@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
     {
         MEM_PART = atoi(argv[1]);
         PROC_PART = atoi(argv[2]);
-        runProgram(1, 1);
+        runProgram(1);
     }
     else
     {
@@ -74,6 +74,7 @@ void printRes(const int m[MEM_NUM], const int p[PROC_NUM], const int f[MEM_NUM])
                 printf("%-3dKB process %-2d must wait, no memory space for it.\n", p[i], i);
         }
     }
+    printf("\n==============================================================");
 }
 
 void printInput(int p, int m, int pIdx, int mIdx)
@@ -83,13 +84,14 @@ void printInput(int p, int m, int pIdx, int mIdx)
     for (int i = 0; i < MEM_PART; i++)
         if(inUse[i] == -1)
             printf(" %3dKB ",  memPart[i]);
-    printf("\n");
+    printf("\n\n");
 }
 
 //First-fit:  Allocate the first hole that is big enough
 void firstFit(const int m[MEM_NUM], const int p[PROC_NUM])
 {
-    printf("\n\nStep by Step First fit Assignment: \n");
+    printf("\n==============================================================");
+    printf("\nStep by Step First fit Assignment: \n");
     //set all as -1 as free
     for(int i = 0; i < MEM_PART; i++) inUse[i] = -1;
     
@@ -117,7 +119,8 @@ Produces the smallest leftover hole
 */
 void bestFit(const int m[MEM_NUM], const int p[PROC_NUM])
 {
-    printf("\n\nStep by Step Best Fit Assignment: \n");
+    printf("\n==============================================================");
+    printf("\nStep by Step Best Fit Assignment: \n");
     int s = -1; // empty, smallest 
     //set all as -1 as free, otherwise set it to the process that is taken by
     for(int i = 0; i < MEM_PART; i++) inUse[i] = -1;
@@ -146,7 +149,6 @@ void bestFit(const int m[MEM_NUM], const int p[PROC_NUM])
     }
     printf("\nSummary for best fit:\n");
     printRes(m, p, inUse);
-   
 }
 
 /*
@@ -156,7 +158,8 @@ Produces the largest leftover hole
 */
 void worstFit(const int m[MEM_NUM], const int p[PROC_NUM])
 {
-    printf("\n\nStep by Step Worst fit Assignment: \n");
+    printf("\n==============================================================");
+    printf("\nStep by Step Worst fit Assignment: \n");
     int worstIndex = -1;
     int biggestGap = 0;
     //set all as -1 as free, otherwise set it to the process that is taken by
@@ -192,38 +195,41 @@ void worstFit(const int m[MEM_NUM], const int p[PROC_NUM])
     printRes(m, p, inUse);
 }
 
-int runAll()
+void runAll()
 {
     firstFit(memPart, procPart);
     bestFit(memPart, procPart);
     worstFit(memPart, procPart);
 }
 
-int runAsk(int x)
+void runAsk(int x)
 {
     switch(x)
     {
-        case 0: runAll(); break;
+        case 0: runAll(); return;
         case 1: firstFit(memPart, procPart); break;
         case 2: bestFit(memPart, procPart); break;
         case 3: worstFit(memPart, procPart); break;
-        default: printf("Invalid Input\n"); ask(); break;
+        case 4: return;
+        default: printf("Invalid Input\n"); break;
     }
+    ask(); 
 }
 
-int ask()
+void ask()
 {
     int x = 0;
-    while(printf("\nEnter 0 for All, 1 for First Fit, 2 for Best Fit and 3 for Worst Fit:")
+    while(printf("\n0 for All\n1 for First Fit\n2 for Best Fit\n3 for Worst Fit\n4 for Exit\nEnter your option: ")
         && scanf("%d", &x) != 1) //this loops while the input is invalid
         //aka it will ask again
             scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
     runAsk(x);
 }
 
-int runProgram(int getInput, int r)
+void runProgram(int getInput)
 {
-    printf("%d Memory partitions and %d Processes.", MEM_PART, PROC_PART);
+    printf("%d Memory partitions and %d Processes.\n", MEM_PART, PROC_PART);
+    
     if(getInput == 1)
     {
         printf("\n\nEnter the memory partitions.");
@@ -232,6 +238,5 @@ int runProgram(int getInput, int r)
         getProcessInput(procPart, PROC_PART);
         
     }
-    if (r == 1) runAll();
-    else ask();
+    ask();
 }
