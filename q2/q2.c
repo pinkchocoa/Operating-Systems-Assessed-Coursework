@@ -11,11 +11,11 @@ int main(int argc, char* argv[])
     {
         switch(atoi(argv[1]))
         {
-            case 1:
-                testCase1(); break;
+            case 1: testCase1(); break;
+            case 2: testCase2(); break;
             default:
                 printf("Invalid test case.\n"); 
-                printf("Test cases available: 1.\n"); 
+                printf("Test cases available: 1 - 2.\n"); 
                 break;
         }
     }
@@ -74,7 +74,7 @@ void printRes(const int m[MEM_NUM], const int p[PROC_NUM], const int f[MEM_NUM])
                 printf("%-3dKB process %-2d must wait, no memory space for it.\n", p[i], i);
         }
     }
-    printf("\n==============================================================");
+    printf("==============================================================\n");
 }
 
 void printInput(int p, int m, int pIdx, int mIdx)

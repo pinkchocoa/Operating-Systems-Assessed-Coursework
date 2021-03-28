@@ -17,3 +17,14 @@ void testCase1()
     changeVals(MEM_PART, PROC_PART, m, p);
     runProgram(0);
 }
+
+void testCase2()
+{
+    /*tut8 question*/
+    int m[5]={100,500,200,300,600};
+    int p[4]={212,417,112,426};
+    MEM_PART=5;
+    PROC_PART=4;
+    changeVals(MEM_PART, PROC_PART, m, p);
+    runProgram(0);
+}
