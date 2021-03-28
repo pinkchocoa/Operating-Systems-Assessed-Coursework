@@ -10,4 +10,6 @@ int notUse[MEM_NUM] = {0};
 int MEM_PART = 12;
 int PROC_PART = 10;
 
-int runProgram(int getInput);
+int runProgram(int getInput, int runAll);
+int ask();
+int runAsk(int x);

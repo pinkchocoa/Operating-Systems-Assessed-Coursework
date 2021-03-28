@@ -23,11 +23,11 @@ void printRes(const int m[MEM_NUM], const int p[PROC_NUM], const int f[MEM_NUM])
     {
         if(f[i] == -1) //free
         {
-            printf("Partition %-2d : %-3dKB\n", i, m[i]);
+            printf("Partition %-2d of %-3dKB\n", i, m[i]);
         }
         else //not free
         {
-            printf("Partition %-2d : %-3dKB contains Processs %-2d : %-3dKB\n", 
+            printf("Partition %-2d of %-3dKB contains Processs %-2d of %-3dKB\n", 
             i, m[i], f[i], p[f[i]]);
             notUse[f[i]] = 1;
             count++;
@@ -47,8 +47,8 @@ void printRes(const int m[MEM_NUM], const int p[PROC_NUM], const int f[MEM_NUM])
 
 void printInput(int p, int m, int pIdx, int mIdx)
 {
-    printf("%-3dKB process%2d is put in %-3dKB partition %-2d, ", p, pIdx, m, mIdx);
-    printf("leaving");
+    printf("%-3dKB process%2d is put in %-3dKB partition %-2d\n", p, pIdx, m, mIdx);
+    printf("This leaves us with ");
     for (int i = 0; i < MEM_PART; i++)
         if(inUse[i] == -1)
             printf(" %3dKB ",  memPart[i]);
@@ -58,6 +58,7 @@ void printInput(int p, int m, int pIdx, int mIdx)
 //First-fit:  Allocate the first hole that is big enough
 void firstFit(const int m[MEM_NUM], const int p[PROC_NUM])
 {
+    printf("\n\nStep by Step First fit Assignment: \n");
     //set all as -1 as free
     for(int i = 0; i < MEM_PART; i++) inUse[i] = -1;
     
@@ -85,6 +86,7 @@ Produces the smallest leftover hole
 */
 void bestFit(const int m[MEM_NUM], const int p[PROC_NUM])
 {
+    printf("\n\nStep by Step Best Fit Assignment: \n");
     int s = -1; // empty, smallest 
     //set all as -1 as free, otherwise set it to the process that is taken by
     for(int i = 0; i < MEM_PART; i++) inUse[i] = -1;
@@ -123,6 +125,7 @@ Produces the largest leftover hole
 */
 void worstFit(const int m[MEM_NUM], const int p[PROC_NUM])
 {
+    printf("\n\nStep by Step Worst fit Assignment: \n");
     int worstIndex = -1;
     int biggestGap = 0;
     //set all as -1 as free, otherwise set it to the process that is taken by
@@ -158,7 +161,36 @@ void worstFit(const int m[MEM_NUM], const int p[PROC_NUM])
     printRes(m, p, inUse);
 }
 
-int runProgram(int getInput)
+int runAll()
+{
+    firstFit(memPart, procPart);
+    bestFit(memPart, procPart);
+    worstFit(memPart, procPart);
+}
+
+int runAsk(int x)
+{
+    switch(x)
+    {
+        case 0: runAll(); break;
+        case 1: firstFit(memPart, procPart); break;
+        case 2: bestFit(memPart, procPart); break;
+        case 3: worstFit(memPart, procPart); break;
+        default: printf("Invalid Input\n"); ask(); break;
+    }
+}
+
+int ask()
+{
+    int x = 0;
+    while(printf("\nEnter 0 for All, 1 for First Fit, 2 for Best Fit and 3 for Worst Fit:")
+        && scanf("%d", &x) != 1) //this loops while the input is invalid
+        //aka it will ask again
+            scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
+    runAsk(x);
+}
+
+int runProgram(int getInput, int r)
 {
     printf("%d Memory partitions and %d Processes.", MEM_PART, PROC_PART);
     if(getInput == 1)
@@ -169,18 +201,14 @@ int runProgram(int getInput)
         getProcessInput(procPart, PROC_PART);
         
     }
-    printf("\n\nStep by Step First fit Assignment: \n");
-    firstFit(memPart, procPart);
-    printf("\n\nStep by Step Best Fit Assignment: \n");
-    bestFit(memPart, procPart);
-    printf("\n\nStep by Step Worst fit Assignment: \n");
-    worstFit(memPart, procPart);
+    if (r == 1) runAll();
+    else ask();
 }
 
 int main(int argc, char* argv[])
 {
     if(argc <= 1) /*no arguments*/
-        runProgram(1);
+        runProgram(1, 0);
     else if(argc == 2)
     {
         switch(atoi(argv[1]))
@@ -197,7 +225,7 @@ int main(int argc, char* argv[])
     {
         MEM_PART = atoi(argv[1]);
         PROC_PART = atoi(argv[2]);
-        runProgram(1);
+        runProgram(1, 1);
     }
     else
     {
