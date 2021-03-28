@@ -56,7 +56,10 @@ int main(int argc, char* argv[])
     {
         psize = atoi(argv[1]);
         rsize = atoi(argv[2]);
-        runProgram(psize, rsize, 1);
+        if (psize > 100 || rsize > 100)
+            printf("There is a limit of 100 for both sizes.\n");
+        else
+            runProgram(psize, rsize, 1);
     }
     else
     {
