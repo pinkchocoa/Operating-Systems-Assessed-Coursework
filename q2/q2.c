@@ -18,15 +18,16 @@ void printRes(const int m[MEM_NUM], const int p[PROC_NUM], const int f[MEM_NUM])
 {
     int count = 0;
     for(int i = 0; i < PROC_PART; i++) notUse[i] = -1;
+    
     for(int i = 0; i < MEM_PART; i++)
     {
         if(f[i] == -1) //free
         {
-            printf("Hole %d of size %dKB is not in use\n", i, m[i]);
+            printf("Hole %2d : %3dKB\n", i, m[i]);
         }
         else //not free
         {
-            printf("Hole %d of size %dKB is in use by process %d of size %dKB\n", 
+            printf("Hole %2d : %3dKB contains Processs%2d : %3dKB\n", 
             i, m[i], f[i], p[f[i]]);
             notUse[f[i]] = 1;
             count++;
@@ -39,9 +40,19 @@ void printRes(const int m[MEM_NUM], const int p[PROC_NUM], const int f[MEM_NUM])
         for(int i = 0; i < PROC_PART; i++)
         {
             if (notUse[i] == -1)
-                printf("Process %d of size %dKB has to wait.\n", i, p[i]);
+                printf("%3dKB process%2d must wait, no memory space for it.\n", p[i], i);
         }
     }
+}
+
+void printInput(int p, int m)
+{
+    printf("%3dKB process is put in %3dKB partition, ", p, m);
+    printf("leaving");
+    for (int i = 0; i < MEM_PART; i++)
+        if(inUse[i] == -1)
+            printf(" %3dKB,",  memPart[i]);
+    printf("\n");
 }
 
 //First-fit:  Allocate the first hole that is big enough
@@ -58,11 +69,12 @@ void firstFit(const int m[MEM_NUM], const int p[PROC_NUM])
             if(inUse[i] == -1 && m[i] >= p[j])
             {
                 inUse[i] = j; //set inUse to the process
+                printInput(p[j], m[i]);
                 break;
             }
         }
     }
-    printf("\n\nFirst fit: \n");
+    printf("\nSummary for first fit:\n");
     printRes(m, p, inUse);
 }
 
@@ -94,9 +106,12 @@ void bestFit(const int m[MEM_NUM], const int p[PROC_NUM])
                 }
             }
         }
-        if(s != -1) inUse[s] = j; //if smallest not empty then assign the current input process to the smallest mem partiton stored in smallest
+        if(s != -1)
+        {   inUse[s] = j; //if smallest not empty then assign the current input process to the smallest mem partiton stored in smallest
+            printInput(p[j], m[s]);
+        }
     }
-    printf("\n\nBest Fit: \n");
+    printf("\nSummary for best fit:\n");
     printRes(m, p, inUse);
    
 }
@@ -134,9 +149,12 @@ void worstFit(const int m[MEM_NUM], const int p[PROC_NUM])
             }
         }
         if(worstIndex != -1)
+        {
             inUse[worstIndex] = j;
+            printInput(p[j], m[worstIndex]);
+        }
     }
-    printf("\n\nWorst fit: \n");
+    printf("\nSummary for worst fit:\n");
     printRes(m, p, inUse);
 }
 
@@ -151,8 +169,11 @@ int runProgram(int getInput)
         getProcessInput(procPart, PROC_PART);
         
     }
+    printf("\n\nStep by Step First fit Assignment: \n");
     firstFit(memPart, procPart);
+    printf("\n\nStep by Step Best Fit Assignment: \n");
     bestFit(memPart, procPart);
+    printf("\n\nStep by Step Worst fit Assignment: \n");
     worstFit(memPart, procPart);
 }
 
