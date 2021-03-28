@@ -80,7 +80,7 @@ void printRes(const int m[MEM_NUM], const int p[PROC_NUM], const int f[MEM_NUM])
 void printInput(int p, int m, int pIdx, int mIdx)
 {
     printf("%-3dKB process%2d is put in %-3dKB partition %-2d\n", p, pIdx, m, mIdx);
-    printf("This leaves us with ");
+    printf("This leaves us with partitions:");
     for (int i = 0; i < MEM_PART; i++)
         if(inUse[i] == -1)
             printf(" %3dKB ",  memPart[i]);
