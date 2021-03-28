@@ -11,14 +11,14 @@ This is a header file to q1.c,
 /* End Header
 *******************************************************************/
 
-//too lazy to allocate memory dynamically...
-//c programs cannot take variables as array size
+/*too lazy to allocate memory dynamically...
+c programs cannot take variables as array size*/
 #define P_NUM 100
 #define R_NUM 100
 
 int psize = 6;
 int rsize = 4;
-int alloc[P_NUM][R_NUM]={};
+int alloc[P_NUM][R_NUM]={0};
 int max[P_NUM][R_NUM]={0};
 int avail[R_NUM] = {0};
 int minRes[R_NUM] = {0};
@@ -42,8 +42,7 @@ void calNeed(const int a[P_NUM][R_NUM],
 const int max[P_NUM][R_NUM], int need[P_NUM][R_NUM], 
 const int psize, const int rsize);
 
-void printSeq(const int* r, int size, int flag, 
-const int psize, const int rsize);
+void printSeq(const int* r, int flag, const int psize);
 
 void safety(int alloc[P_NUM][R_NUM], 
 const int max[P_NUM][R_NUM], int need[P_NUM][R_NUM], 
