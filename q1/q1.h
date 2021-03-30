@@ -10,20 +10,24 @@ This is a header file to q1.c,
 */
 /* End Header
 *******************************************************************/
-
+/**
+ * @see q1.c, q1testCases.c
+*/
 /*too lazy to allocate memory dynamically...
 c programs cannot take variables as array size*/
-#define P_NUM 100
-#define R_NUM 100
+#define P_NUM 100 //The maximum process size.
+#define R_NUM 100 //The maximum resource size.
 
-int psize = 6;
-int rsize = 4;
-int alloc[P_NUM][R_NUM]={0};
-int max[P_NUM][R_NUM]={0};
-int avail[R_NUM] = {0};
-int minRes[R_NUM] = {0};
-int need[P_NUM][R_NUM] = {0};
-int total[P_NUM][R_NUM] = {0};
+//Able to change the process and resource input
+int psize = 6; // Process Number, limit 100(P_NUM)
+int rsize = 4; // Resource Number, limit 100(R_NUM)
+
+int alloc[P_NUM][R_NUM]={0}; // Allocation Resources Matrix
+int max[P_NUM][R_NUM]={0}; // Max Resources Matrix
+int avail[R_NUM] = {0}; // Avilable Resources Matrix
+int minRes[R_NUM] = {0}; // Minmum Resources
+int need[P_NUM][R_NUM] = {0}; // Need Reources Matrix
+int total[P_NUM][R_NUM] = {0}; // Total Resources Matrix
 
 void getResInput(int avail[R_NUM], const int rsize);
 

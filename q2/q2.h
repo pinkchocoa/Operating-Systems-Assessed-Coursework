@@ -1,3 +1,17 @@
+/* Start Header
+*****************************************************************/
+/*!
+\file q2.h
+\author Jodie Moh
+\author Zhei Wei
+\author Aloysius Wong
+\par email:
+\date 
+\brief
+This is the header file for q2.c.
+*/
+/* End Header
+*******************************************************************/
 #define MEM_NUM 100 /*number of memory partitions*/
 #define PROC_NUM 100 /*number of input processes*/
 
@@ -6,8 +20,8 @@ int procPart[PROC_NUM] = {0};
 int inUse[MEM_NUM] = {0};
 int notUse[MEM_NUM] = {0};
 
-int MEM_PART = 12;
-int PROC_PART = 10;
+int MEM_PART = 12; /*Maxium memory part*/
+int PROC_PART = 10; /*Maxium memory part*/
 
 void runProgram(int getInput);
 void ask();
