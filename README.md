@@ -5,3 +5,6 @@ Operating Systems Assessed Coursework
 
 > Question 2: Dynamic Memory allocation
 > Write a C program that simulate first-fit, best-fit, worse-fit memory allocation approaches.
+
+Code Documentation
+https://pinkchocoa.github.io/CSC1007/
