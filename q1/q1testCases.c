@@ -3,24 +3,29 @@
 /*!
 \file q1testCases.c
 \author Jodie Moh
-\par email:
 \date 24/03/2021
 \brief
 This is a preset test case values file to q1.c.
-This is meant for the user to use these preset test cases if the user do not wish to key in individual inputs manually.
+This is meant for the user to use these preset test cases if the user do not 
+wish to key in individual inputs manually.
 */
 /* End Header
 *******************************************************************/
 /**
- * @brief This function changes the values, using the preset test case to runProgram() to proceed with the banker algorithm program.
+ * @brief This function changes the values, using the preset test case to 
+ * runProgram() to proceed with the banker algorithm program.
  * 
- * @note The parameters are all constant type in order to make its value fix, to prevent changes in the underlying value.
- * @param psize This is refering to the int type variable that represent the process size.
- * @param rsize This is refering to the int type variable that represent the resource size.
+ * @note The parameters are all constant type in order to make its value fix, 
+ * to prevent changes in the underlying value.
+ * @param psize This is refering to the int type variable that represent the 
+ * process size.
+ * @param rsize This is refering to the int type variable that represent the 
+ * resource size.
  * @param av This is a pointer to an integer to dereference available value. 
  * @param al This is a pointer to an integer to dereference allocation value. 
  * @param m This is a pointer to an integer to dereference max value.
- * @brief These are the 6 preset testcases: testCase1() testCase2() testCase3() testCase4() testCase5() testCase6()
+ * @brief These are the 6 preset testcases: testCase1() testCase2() testCase3() 
+ * testCase4() testCase5() testCase6()
  */
 void changeVals(const int psize, const int rsize, 
 const int *av, const int *al, const int *m)

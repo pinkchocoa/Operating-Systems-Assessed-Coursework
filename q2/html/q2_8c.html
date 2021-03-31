@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Q2_Doxy: q2.c File Reference</title>
+<title>Dynamic Memory Allocation Algorithm Q2: q2.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Q2_Doxy
+   <div id="projectname">Dynamic Memory Allocation Algorithm Q2
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -120,21 +120,31 @@ Functions</h2></td></tr>
 <tr class="memdesc:aad1dec8d422b70cc6bffdf90188b7afa"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is use to print the remaining input to show the working process after using the dynamic memory allocation approaches.  <a href="q2_8c.html#aad1dec8d422b70cc6bffdf90188b7afa">More...</a><br /></td></tr>
 <tr class="separator:aad1dec8d422b70cc6bffdf90188b7afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a905bef3990505fe52dd6e9abba046cfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="q2_8c.html#a905bef3990505fe52dd6e9abba046cfb">firstFit</a> (const int m[<a class="el" href="q2_8h.html#a8ca5faf5597a33965217fe61cc6a1f0a">MEM_NUM</a>], const int p[<a class="el" href="q2_8h.html#aea9978897a7765fbe7ece891bed80ee5">PROC_NUM</a>])</td></tr>
-<tr class="memdesc:a905bef3990505fe52dd6e9abba046cfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is one of the dynamic memory allocation approaches: <b>First Fit</b>.<br  />
-The first fit will fit the data in the memory from the beginning available memory to the last memory. Also the memory space must be at least big enough to house the data.<br  />
-FirstFit Algorithm:  <a href="q2_8c.html#a905bef3990505fe52dd6e9abba046cfb">More...</a><br /></td></tr>
+<tr class="memdesc:a905bef3990505fe52dd6e9abba046cfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is one of the dynamic memory allocation approaches: <b>First-Fit</b>.<br  />
+The first-fit will fit the data in the memory from the beginning available memory to the last memory. Also the memory space must be at least big enough to house the data.<br  />
+First-Fit Algorithm:  <a href="q2_8c.html#a905bef3990505fe52dd6e9abba046cfb">More...</a><br /></td></tr>
 <tr class="separator:a905bef3990505fe52dd6e9abba046cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed109f2a3a3b1c486e313e127650850e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="q2_8c.html#aed109f2a3a3b1c486e313e127650850e">bestFit</a> (const int m[<a class="el" href="q2_8h.html#a8ca5faf5597a33965217fe61cc6a1f0a">MEM_NUM</a>], const int p[<a class="el" href="q2_8h.html#aea9978897a7765fbe7ece891bed80ee5">PROC_NUM</a>])</td></tr>
+<tr class="memdesc:aed109f2a3a3b1c486e313e127650850e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is one of the dynamic memory allocation approaches: <b>Best-Fit</b>.<br  />
+Allocate the smallest hole that is big enough must search entire list, unless ordered by size. Produces the smallest leftover hole.<br  />
+Best-Fit Algorithm:  <a href="q2_8c.html#aed109f2a3a3b1c486e313e127650850e">More...</a><br /></td></tr>
 <tr class="separator:aed109f2a3a3b1c486e313e127650850e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fbe85e5febdbe62ce6b18e0beb0a14b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="q2_8c.html#a3fbe85e5febdbe62ce6b18e0beb0a14b">worstFit</a> (const int m[<a class="el" href="q2_8h.html#a8ca5faf5597a33965217fe61cc6a1f0a">MEM_NUM</a>], const int p[<a class="el" href="q2_8h.html#aea9978897a7765fbe7ece891bed80ee5">PROC_NUM</a>])</td></tr>
+<tr class="memdesc:a3fbe85e5febdbe62ce6b18e0beb0a14b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is one of the dynamic memory allocation approaches: <b>Worse-Fit</b>.<br  />
+Allocate the largest hole must also search entire list. Produces the largest leftover hole.<br  />
+Worse-Fit Algorithm:  <a href="q2_8c.html#a3fbe85e5febdbe62ce6b18e0beb0a14b">More...</a><br /></td></tr>
 <tr class="separator:a3fbe85e5febdbe62ce6b18e0beb0a14b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6415dc76e6d061972bee2a66c043a32c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="q2_8c.html#a6415dc76e6d061972bee2a66c043a32c">runAll</a> ()</td></tr>
+<tr class="memdesc:a6415dc76e6d061972bee2a66c043a32c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function is to run all 3 dynamic memory allocation approaches.  <a href="q2_8c.html#a6415dc76e6d061972bee2a66c043a32c">More...</a><br /></td></tr>
 <tr class="separator:a6415dc76e6d061972bee2a66c043a32c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad3817833bf6eebf1ec34cb1fc83f3c72"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="q2_8c.html#ad3817833bf6eebf1ec34cb1fc83f3c72">runAsk</a> (int x)</td></tr>
+<tr class="memdesc:ad3817833bf6eebf1ec34cb1fc83f3c72"><td class="mdescLeft">&#160;</td><td class="mdescRight">A selection case where allow the user to select which dynamic memory allocation approaches from the given choices. The user can also request all.  <a href="q2_8c.html#ad3817833bf6eebf1ec34cb1fc83f3c72">More...</a><br /></td></tr>
 <tr class="separator:ad3817833bf6eebf1ec34cb1fc83f3c72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fbf5802e89d615a76bf38cc7801fd87"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="q2_8c.html#a0fbf5802e89d615a76bf38cc7801fd87">ask</a> ()</td></tr>
+<tr class="memdesc:a0fbf5802e89d615a76bf38cc7801fd87"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function that prints the statement for <a class="el" href="q2_8c.html#ad3817833bf6eebf1ec34cb1fc83f3c72" title="A selection case where allow the user to select which dynamic memory allocation approaches from the g...">runAsk()</a> for dynamic memory allocation approaches choices.  <a href="q2_8c.html#a0fbf5802e89d615a76bf38cc7801fd87">More...</a><br /></td></tr>
 <tr class="separator:a0fbf5802e89d615a76bf38cc7801fd87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5311cbd27d37f2d5824b3f72769319b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="q2_8c.html#ad5311cbd27d37f2d5824b3f72769319b">runProgram</a> (int getInput)</td></tr>
+<tr class="memdesc:ad5311cbd27d37f2d5824b3f72769319b"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function are print statements to request for the user to enter its desire values for memory and process values.  <a href="q2_8c.html#ad5311cbd27d37f2d5824b3f72769319b">More...</a><br /></td></tr>
 <tr class="separator:ad5311cbd27d37f2d5824b3f72769319b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -144,9 +154,8 @@ FirstFit Algorithm:  <a href="q2_8c.html#a905bef3990505fe52dd6e9abba046cfb">More
 Zhei Wei </dd>
 <dd>
 Aloysius Wong </dd></dl>
-<dl class="section user"><dt>email:</dt><dd></dd></dl>
-<dl class="section date"><dt>Date</dt><dd></dd></dl>
-<p>If it is in the safe state, your Banker’s algorithm need print out (display) the execution sequences in which these processes may complete on the screen.</p>
+<dl class="section date"><dt>Date</dt><dd>31/03/2021</dd></dl>
+<p>If it is in the safe state, algorithm need print out (display) the execution sequences in which these processes may complete on the screen.</p>
 <p>Given 12 memory partitions available (holes): 160 KB, 350 KB, 650 KB, 80 KB, 410 KB, 50 KB, 720 KB, 905 KB, 570 KB, 130 KB, 260 KB, and 830 KB (in order), how would each of the first-fit, best-fit, and worst-fit algorithms allocate 10 input processes with different sizes (in order)? </p>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a0fbf5802e89d615a76bf38cc7801fd87"></a>
@@ -163,6 +172,9 @@ Aloysius Wong </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>A function that prints the statement for <a class="el" href="q2_8c.html#ad3817833bf6eebf1ec34cb1fc83f3c72" title="A selection case where allow the user to select which dynamic memory allocation approaches from the g...">runAsk()</a> for dynamic memory allocation approaches choices. </p>
+<dl class="section note"><dt>Note</dt><dd>If the user input is invalid, it will ask again. </dd></dl>
 
 </div>
 </div>
@@ -192,6 +204,25 @@ Aloysius Wong </dd></dl>
       </table>
 </div><div class="memdoc">
 
+<p>This is one of the dynamic memory allocation approaches: <b>Best-Fit</b>.<br  />
+Allocate the smallest hole that is big enough must search entire list, unless ordered by size. Produces the smallest leftover hole.<br  />
+Best-Fit Algorithm: </p>
+<ul>
+<li>Iterate through Memory parts and Process Part</li>
+<li>Starting and select from the first process part and fit in the a available memory that is closest and bigger to the process value to house the data.</li>
+<li>When selecting the process, the memory parts compares with each other to see with is the best fit for the current selected process value.</li>
+<li>Then it call for <a class="el" href="q2_8c.html#ac1b8368f1da76b9ff55d4829ab73bdaa" title="This function is to format and print out the results of the dynamic memory allocation approaches.">printRes()</a> function to print.</li>
+<li>After inserting the process to the suitable memory, it sets inUse[] array to an integer to indicate that its used.</li>
+<li>The loop will continue. <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>This is an integer array that stores memory value. It is also constant in order to make its value fix, to prevent changes in the underlying value. </td></tr>
+    <tr><td class="paramname">p</td><td>This is an integer array that stores process value. It is also constant in order to make its value fix, to prevent changes in the underlying value. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
+
 </div>
 </div>
 <a id="a905bef3990505fe52dd6e9abba046cfb"></a>
@@ -220,12 +251,13 @@ Aloysius Wong </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>This is one of the dynamic memory allocation approaches: <b>First Fit</b>.<br  />
-The first fit will fit the data in the memory from the beginning available memory to the last memory. Also the memory space must be at least big enough to house the data.<br  />
-FirstFit Algorithm: </p>
+<p>This is one of the dynamic memory allocation approaches: <b>First-Fit</b>.<br  />
+The first-fit will fit the data in the memory from the beginning available memory to the last memory. Also the memory space must be at least big enough to house the data.<br  />
+First-Fit Algorithm: </p>
 <ul>
 <li>Iterate through Memory parts and Process Part</li>
 <li>Starting and select from the first process part and fit in the a available memory and the memory must be big enough to house the data.</li>
+<li>Then it call for <a class="el" href="q2_8c.html#ac1b8368f1da76b9ff55d4829ab73bdaa" title="This function is to format and print out the results of the dynamic memory allocation approaches.">printRes()</a> function to print.</li>
 <li>After inserting the process to the suitable memory, it sets inUse[] array to an integer to indicate that its used.</li>
 <li>The loop will continue. <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -279,7 +311,7 @@ FirstFit Algorithm: </p>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>If the input is invalid, it will ask again. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="q2_8h.html">q2.h</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="q2_8h.html" title="This is the header file for q2.c.">q2.h</a> </dd></dl>
 
 </div>
 </div>
@@ -310,7 +342,7 @@ FirstFit Algorithm: </p>
 </div><div class="memdoc">
 
 <p>This is the main function for the program. </p>
-<p>The main function processes if the users wants to use preset testcases, <a class="el" href="q2test_cases_8c.html">q2testCases.c</a> and also limit to only legal inputs are allowed. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The main function processes if the users wants to use preset testcases, <a class="el" href="q2test_cases_8c.html" title="This is a preset test case values file to q2.c.">q2testCases.c</a> and also limit to only legal inputs are allowed. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">argc</td><td>This is refering the number of strings, argument count passed into the program from command line. </td></tr>
     <tr><td class="paramname">argv</td><td>This is refering to the array of arguments. </td></tr>
@@ -432,6 +464,9 @@ FirstFit Algorithm: </p>
       </table>
 </div><div class="memdoc">
 
+<p>This function is to run all 3 dynamic memory allocation approaches. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="q2_8c.html#a905bef3990505fe52dd6e9abba046cfb" title="This is one of the dynamic memory allocation approaches: First-Fit. The first-fit will fit the data i...">firstFit()</a>, <a class="el" href="q2_8c.html#aed109f2a3a3b1c486e313e127650850e" title="This is one of the dynamic memory allocation approaches: Best-Fit. Allocate the smallest hole that is...">bestFit()</a>, <a class="el" href="q2_8c.html#a3fbe85e5febdbe62ce6b18e0beb0a14b" title="This is one of the dynamic memory allocation approaches: Worse-Fit. Allocate the largest hole must al...">worstFit()</a>, <a class="el" href="q2_8c.html#a0fbf5802e89d615a76bf38cc7801fd87" title="A function that prints the statement for runAsk() for dynamic memory allocation approaches choices.">ask()</a> </dd></dl>
+
 </div>
 </div>
 <a id="ad3817833bf6eebf1ec34cb1fc83f3c72"></a>
@@ -450,6 +485,16 @@ FirstFit Algorithm: </p>
       </table>
 </div><div class="memdoc">
 
+<p>A selection case where allow the user to select which dynamic memory allocation approaches from the given choices. The user can also request all. </p>
+<dl class="section note"><dt>Note</dt><dd>If the user input is invalid, it will ask again. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>The input value from the user. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="q2_8c.html#a905bef3990505fe52dd6e9abba046cfb" title="This is one of the dynamic memory allocation approaches: First-Fit. The first-fit will fit the data i...">firstFit()</a>, <a class="el" href="q2_8c.html#aed109f2a3a3b1c486e313e127650850e" title="This is one of the dynamic memory allocation approaches: Best-Fit. Allocate the smallest hole that is...">bestFit()</a>, <a class="el" href="q2_8c.html#a3fbe85e5febdbe62ce6b18e0beb0a14b" title="This is one of the dynamic memory allocation approaches: Worse-Fit. Allocate the largest hole must al...">worstFit()</a> </dd></dl>
+
 </div>
 </div>
 <a id="ad5311cbd27d37f2d5824b3f72769319b"></a>
@@ -467,6 +512,14 @@ FirstFit Algorithm: </p>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>This function are print statements to request for the user to enter its desire values for memory and process values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">getInput</td><td>Gets the input from the user and store it in this integer type variable. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -496,6 +549,25 @@ FirstFit Algorithm: </p>
       </table>
 </div><div class="memdoc">
 
+<p>This is one of the dynamic memory allocation approaches: <b>Worse-Fit</b>.<br  />
+Allocate the largest hole must also search entire list. Produces the largest leftover hole.<br  />
+Worse-Fit Algorithm: </p>
+<ul>
+<li>Iterate through Memory parts and Process Part</li>
+<li>Starting and select from the first process part and fit in the a available memory that is closest and bigger to the process value to house the data.</li>
+<li>It identifies the biggest available memory by iterating the memory to subtract the selected process. The biggest subtraction value will be selected to house the select process.</li>
+<li>Then it call for <a class="el" href="q2_8c.html#ac1b8368f1da76b9ff55d4829ab73bdaa" title="This function is to format and print out the results of the dynamic memory allocation approaches.">printRes()</a> function to print.</li>
+<li>After inserting the process to the suitable memory, it sets inUse[] array to an integer to indicate that its used.</li>
+<li>The loop will continue. <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">m</td><td>This is an integer array that stores memory value. It is also constant in order to make its value fix, to prevent changes in the underlying value. </td></tr>
+    <tr><td class="paramname">p</td><td>This is an integer array that stores process value. It is also constant in order to make its value fix, to prevent changes in the underlying value. </td></tr>
+  </table>
+  </dd>
+</dl>
+</li>
+</ul>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -504,7 +576,7 @@ FirstFit Algorithm: </p>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="q2_8c.html">q2.c</a></li>
-    <li class="footer">Generated on Wed Mar 31 2021 04:36:23 for Q2_Doxy by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

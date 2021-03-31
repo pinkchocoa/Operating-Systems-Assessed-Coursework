@@ -1,0 +1,317 @@
+\hypertarget{q1_8c}{}\doxysection{q1.\+c File Reference}
+\label{q1_8c}\index{q1.c@{q1.c}}
+
+
+Write a C programming which is to simulate the functions of the OS to implement the Banker\textquotesingle{}s algorithm, to detect if the system is in Safestate or unsafe state. If it is in the safe state, your Banker’s algorithm need print out (display) the execution sequences in which these processes may complete on the screen. If it is in the unsafe state, your Banker’s algorithm need display which process it fails at by showing the available resources at this point of time, and the processes needed resources at this point of time.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}q1.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}q1test\+Cases.\+c\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{q1_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em This is the main function for the program. The main function processes if the users wants to use preset testcases, \mbox{\hyperlink{q1test_cases_8c}{q1test\+Cases.\+c}} and also limit to only legal inputs are allowed./n The user can also change the matrix size from \mbox{\hyperlink{q1_8h}{q1.\+h}} header file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{q1_8c_ae10af372073f616e4382103988f46f21}{get\+Res\+Input}} (int \mbox{\hyperlink{q1_8h_ac62f4460f8b95a70909e8badc5dfcd1c}{avail}}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, const int \mbox{\hyperlink{q1_8h_aa5cd7b43d9c6206635b4478da6a2d898}{rsize}})
+\begin{DoxyCompactList}\small\item\em This is a method function that gets the desire available resource input from the user. It will loop and ask for the same input if it is given a invalid input, it will clear its buffer and ask again. Furthermore, the number of inputs from users are limited by the resource size value. Hence it will only ask 4 times if resourse size value is set as 4. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{q1_8c_ac2d9ac5437a68a33f7e21a013b0a1341}{get\+Array\+Input}} (int array\mbox{[}\mbox{\hyperlink{q1_8h_a78c09f23be348e022b4f4b7bea2c8217}{P\+\_\+\+NUM}}\mbox{]}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, const int \mbox{\hyperlink{q1_8h_a30b7ba535716073f7fe3b10d185ba8f0}{psize}}, const int \mbox{\hyperlink{q1_8h_aa5cd7b43d9c6206635b4478da6a2d898}{rsize}})
+\begin{DoxyCompactList}\small\item\em Get Array Input object, using a multi dimensional array to store the user input according to the size of processes and resources set from \mbox{\hyperlink{q1_8h}{q1.\+h}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{q1_8c_a71e22ed5251559e86e909aaa23519387}{print\+Arr}} (const int $\ast$r, const int size)
+\begin{DoxyCompactList}\small\item\em This function is to print the items in the array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{q1_8c_a7fcced1f44df1186e51996b015c8e450}{print\+Formatting}} (const int \mbox{\hyperlink{q1_8h_a3874bffbf3ea41f1b7d3a8bf78f46c7c}{alloc}}\mbox{[}\mbox{\hyperlink{q1_8h_a78c09f23be348e022b4f4b7bea2c8217}{P\+\_\+\+NUM}}\mbox{]}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, const int \mbox{\hyperlink{q1_8h_a77627aaec0eefd08fc152052761cfa9f}{max}}\mbox{[}\mbox{\hyperlink{q1_8h_a78c09f23be348e022b4f4b7bea2c8217}{P\+\_\+\+NUM}}\mbox{]}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, const int \mbox{\hyperlink{q1_8h_a3f0b2e246868658a90d8d9d743b40d39}{need}}\mbox{[}\mbox{\hyperlink{q1_8h_a78c09f23be348e022b4f4b7bea2c8217}{P\+\_\+\+NUM}}\mbox{]}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, const int \mbox{\hyperlink{q1_8h_ac62f4460f8b95a70909e8badc5dfcd1c}{avail}}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, const int \mbox{\hyperlink{q1_8h_a30b7ba535716073f7fe3b10d185ba8f0}{psize}}, const int \mbox{\hyperlink{q1_8h_aa5cd7b43d9c6206635b4478da6a2d898}{rsize}})
+\begin{DoxyCompactList}\small\item\em Printing and displaying the values of all processes and resources from allocation, max, need, available matrix to be displayed to the user. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{q1_8c_abcf7dbbc1a37bf6943c527ee23edefd0}{cal\+Min\+Resource}} (const int a\mbox{[}\mbox{\hyperlink{q1_8h_a78c09f23be348e022b4f4b7bea2c8217}{P\+\_\+\+NUM}}\mbox{]}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, int minR\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, const int \mbox{\hyperlink{q1_8h_a30b7ba535716073f7fe3b10d185ba8f0}{psize}}, const int \mbox{\hyperlink{q1_8h_aa5cd7b43d9c6206635b4478da6a2d898}{rsize}})
+\begin{DoxyCompactList}\small\item\em This function is to add up all the allocation processes resources to check if the total allocation value is valid. Therefore, it will iterate through the resource size and process to accumulate. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{q1_8c_ab472e7182ff625ea19b7e8243a13f054}{cal\+Need}} (const int a\mbox{[}\mbox{\hyperlink{q1_8h_a78c09f23be348e022b4f4b7bea2c8217}{P\+\_\+\+NUM}}\mbox{]}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, const int \mbox{\hyperlink{q1_8h_a77627aaec0eefd08fc152052761cfa9f}{max}}\mbox{[}\mbox{\hyperlink{q1_8h_a78c09f23be348e022b4f4b7bea2c8217}{P\+\_\+\+NUM}}\mbox{]}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, int \mbox{\hyperlink{q1_8h_a3f0b2e246868658a90d8d9d743b40d39}{need}}\mbox{[}\mbox{\hyperlink{q1_8h_a78c09f23be348e022b4f4b7bea2c8217}{P\+\_\+\+NUM}}\mbox{]}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, const int \mbox{\hyperlink{q1_8h_a30b7ba535716073f7fe3b10d185ba8f0}{psize}}, const int \mbox{\hyperlink{q1_8h_aa5cd7b43d9c6206635b4478da6a2d898}{rsize}})
+\begin{DoxyCompactList}\small\item\em This function is to calculate the need matrix but subtracting the matrix (max matrix -\/ allocation matrix = need matrix) and store the matrix values in multi dimention need array. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{q1_8c_a409846989ee312c2583134b7f2609a44}{print\+Seq}} (const int $\ast$r, int flag, const int \mbox{\hyperlink{q1_8h_a30b7ba535716073f7fe3b10d185ba8f0}{psize}})
+\begin{DoxyCompactList}\small\item\em This function is to print the sequence after the banker algorithm and if it is a safe or unsafe state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{q1_8c_ab2cb143637f7a977d0faec24af809820}{safety}} (int \mbox{\hyperlink{q1_8h_a3874bffbf3ea41f1b7d3a8bf78f46c7c}{alloc}}\mbox{[}\mbox{\hyperlink{q1_8h_a78c09f23be348e022b4f4b7bea2c8217}{P\+\_\+\+NUM}}\mbox{]}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, const int \mbox{\hyperlink{q1_8h_a77627aaec0eefd08fc152052761cfa9f}{max}}\mbox{[}\mbox{\hyperlink{q1_8h_a78c09f23be348e022b4f4b7bea2c8217}{P\+\_\+\+NUM}}\mbox{]}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, int \mbox{\hyperlink{q1_8h_a3f0b2e246868658a90d8d9d743b40d39}{need}}\mbox{[}\mbox{\hyperlink{q1_8h_a78c09f23be348e022b4f4b7bea2c8217}{P\+\_\+\+NUM}}\mbox{]}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, const int \mbox{\hyperlink{q1_8h_ac62f4460f8b95a70909e8badc5dfcd1c}{avail}}\mbox{[}\mbox{\hyperlink{q1_8h_afddfb699b759775d941f6c28bc57d865}{R\+\_\+\+NUM}}\mbox{]}, const int \mbox{\hyperlink{q1_8h_a30b7ba535716073f7fe3b10d185ba8f0}{psize}}, const int \mbox{\hyperlink{q1_8h_aa5cd7b43d9c6206635b4478da6a2d898}{rsize}})
+\begin{DoxyCompactList}\small\item\em This function is the bankers algorithm. This process of this function\+: \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{q1_8c_ab2586a198a21ecdaf64f866b9ece9aaf}{get\+Inputs}} (const int \mbox{\hyperlink{q1_8h_a30b7ba535716073f7fe3b10d185ba8f0}{psize}}, const int \mbox{\hyperlink{q1_8h_aa5cd7b43d9c6206635b4478da6a2d898}{rsize}})
+\begin{DoxyCompactList}\small\item\em Get the prints statements to get the user inputs. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{q1_8c_ad48a5ec9e381343245916f3e5b2e0d81}{run\+Program}} (const int \mbox{\hyperlink{q1_8h_a30b7ba535716073f7fe3b10d185ba8f0}{psize}}, const int \mbox{\hyperlink{q1_8h_aa5cd7b43d9c6206635b4478da6a2d898}{rsize}}, const int set\+Value)
+\begin{DoxyCompactList}\small\item\em It is a function to map and run the program. Calling and running the process in order. The values will be return and printed to the terminal to display for the user. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Write a C programming which is to simulate the functions of the OS to implement the Banker\textquotesingle{}s algorithm, to detect if the system is in Safestate or unsafe state. If it is in the safe state, your Banker’s algorithm need print out (display) the execution sequences in which these processes may complete on the screen. If it is in the unsafe state, your Banker’s algorithm need display which process it fails at by showing the available resources at this point of time, and the processes needed resources at this point of time. 
+
+\begin{DoxyAuthor}{Author}
+Jodie Moh 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+24/03/2021 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{q1_8c_abcf7dbbc1a37bf6943c527ee23edefd0}\label{q1_8c_abcf7dbbc1a37bf6943c527ee23edefd0}} 
+\index{q1.c@{q1.c}!calMinResource@{calMinResource}}
+\index{calMinResource@{calMinResource}!q1.c@{q1.c}}
+\doxysubsubsection{\texorpdfstring{calMinResource()}{calMinResource()}}
+{\footnotesize\ttfamily void cal\+Min\+Resource (\begin{DoxyParamCaption}\item[{const int}]{a\mbox{[}\+P\+\_\+\+NUM\mbox{]}\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{int}]{minR\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{const int}]{psize,  }\item[{const int}]{rsize }\end{DoxyParamCaption})}
+
+
+
+This function is to add up all the allocation processes resources to check if the total allocation value is valid. Therefore, it will iterate through the resource size and process to accumulate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & This is an integer multi dimensional allocation array that contains processes and resource size for the max matrix. \\
+\hline
+{\em minR} & This is and array to store the minimum resource value. \\
+\hline
+{\em psize} & This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+{\em rsize} & This is the size for resource, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{q1_8c_ad48a5ec9e381343245916f3e5b2e0d81}{run\+Program()}}, \mbox{\hyperlink{q1_8c_a0ddf1224851353fc92bfbff6f499fa97}{main()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{q1_8c_ab472e7182ff625ea19b7e8243a13f054}\label{q1_8c_ab472e7182ff625ea19b7e8243a13f054}} 
+\index{q1.c@{q1.c}!calNeed@{calNeed}}
+\index{calNeed@{calNeed}!q1.c@{q1.c}}
+\doxysubsubsection{\texorpdfstring{calNeed()}{calNeed()}}
+{\footnotesize\ttfamily void cal\+Need (\begin{DoxyParamCaption}\item[{const int}]{a\mbox{[}\+P\+\_\+\+NUM\mbox{]}\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{const int}]{max\mbox{[}\+P\+\_\+\+NUM\mbox{]}\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{int}]{need\mbox{[}\+P\+\_\+\+NUM\mbox{]}\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{const int}]{psize,  }\item[{const int}]{rsize }\end{DoxyParamCaption})}
+
+
+
+This function is to calculate the need matrix but subtracting the matrix (max matrix -\/ allocation matrix = need matrix) and store the matrix values in multi dimention need array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & This is an integer multi dimensional allocation array that contains processes and resource size for the max matrix. \\
+\hline
+{\em max} & This is an integer multi dimensional max array for contains processes and resource size for the max matrix. \\
+\hline
+{\em need} & This is an integer multi dimensional need array for contains processes and resource size for the need matrix. \\
+\hline
+{\em psize} & This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+{\em rsize} & This is the size for resource, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{q1_8c_a0ddf1224851353fc92bfbff6f499fa97}{main()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{q1_8c_ac2d9ac5437a68a33f7e21a013b0a1341}\label{q1_8c_ac2d9ac5437a68a33f7e21a013b0a1341}} 
+\index{q1.c@{q1.c}!getArrayInput@{getArrayInput}}
+\index{getArrayInput@{getArrayInput}!q1.c@{q1.c}}
+\doxysubsubsection{\texorpdfstring{getArrayInput()}{getArrayInput()}}
+{\footnotesize\ttfamily void get\+Array\+Input (\begin{DoxyParamCaption}\item[{int}]{array\mbox{[}\+P\+\_\+\+NUM\mbox{]}\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{const int}]{psize,  }\item[{const int}]{rsize }\end{DoxyParamCaption})}
+
+
+
+Get Array Input object, using a multi dimensional array to store the user input according to the size of processes and resources set from \mbox{\hyperlink{q1_8h}{q1.\+h}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & This is an integer multi dimensional array for processes and resource size. \\
+\hline
+{\em psize} & This is a constant integer type of variable that is refering to the process size set from \mbox{\hyperlink{q1_8h}{q1.\+h}}. \\
+\hline
+{\em rsize} & This is a constant integer type of variable that is refering to the resource size set from \mbox{\hyperlink{q1_8h}{q1.\+h}}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{q1_8c_ab2586a198a21ecdaf64f866b9ece9aaf}{get\+Inputs()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{q1_8c_ab2586a198a21ecdaf64f866b9ece9aaf}\label{q1_8c_ab2586a198a21ecdaf64f866b9ece9aaf}} 
+\index{q1.c@{q1.c}!getInputs@{getInputs}}
+\index{getInputs@{getInputs}!q1.c@{q1.c}}
+\doxysubsubsection{\texorpdfstring{getInputs()}{getInputs()}}
+{\footnotesize\ttfamily void get\+Inputs (\begin{DoxyParamCaption}\item[{const int}]{psize,  }\item[{const int}]{rsize }\end{DoxyParamCaption})}
+
+
+
+Get the prints statements to get the user inputs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em psize} & This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+{\em rsize} & This is the size for resource, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{q1_8c_ae10af372073f616e4382103988f46f21}{get\+Res\+Input()}}, \mbox{\hyperlink{q1_8c_ac2d9ac5437a68a33f7e21a013b0a1341}{get\+Array\+Input}}, \mbox{\hyperlink{q1_8c_ac2d9ac5437a68a33f7e21a013b0a1341}{get\+Array\+Input()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{q1_8c_ae10af372073f616e4382103988f46f21}\label{q1_8c_ae10af372073f616e4382103988f46f21}} 
+\index{q1.c@{q1.c}!getResInput@{getResInput}}
+\index{getResInput@{getResInput}!q1.c@{q1.c}}
+\doxysubsubsection{\texorpdfstring{getResInput()}{getResInput()}}
+{\footnotesize\ttfamily void get\+Res\+Input (\begin{DoxyParamCaption}\item[{int}]{avail\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{const int}]{rsize }\end{DoxyParamCaption})}
+
+
+
+This is a method function that gets the desire available resource input from the user. It will loop and ask for the same input if it is given a invalid input, it will clear its buffer and ask again. Furthermore, the number of inputs from users are limited by the resource size value. Hence it will only ask 4 times if resourse size value is set as 4. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em avail} & This is an integer type of array that is refering to the available resources that will be used to store values from the user. \\
+\hline
+{\em rsize} & This is an integer type of variable that is refering to the resource size, that will be used to limit the amount of input. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{q1_8c_ab2586a198a21ecdaf64f866b9ece9aaf}{get\+Inputs()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{q1_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{q1_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{q1.c@{q1.c}!main@{main}}
+\index{main@{main}!q1.c@{q1.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+This is the main function for the program. The main function processes if the users wants to use preset testcases, \mbox{\hyperlink{q1test_cases_8c}{q1test\+Cases.\+c}} and also limit to only legal inputs are allowed./n The user can also change the matrix size from \mbox{\hyperlink{q1_8h}{q1.\+h}} header file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & This is refering the number of strings, argument count passed into the program from command line. \\
+\hline
+{\em argv} & This is refering to the array of arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+Processes and Resources max size limit is 100. 
+\end{DoxyWarning}
+\begin{DoxyNote}{Note}
+{\bfseries{./a.exe \#}}, while {\bfseries{\#}} are digits. 
+\end{DoxyNote}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{q1_8c_ad48a5ec9e381343245916f3e5b2e0d81}{run\+Program()}}, \mbox{\hyperlink{q1test_cases_8c_ac2d328d152bb6499d86beb182966d6af}{test\+Case1()}}, \mbox{\hyperlink{q1test_cases_8c_a3948eda67c231ff3a7742cde3f37071c}{test\+Case2()}}, \mbox{\hyperlink{q1test_cases_8c_aa5cf1ffc397cad267ae2cd3ac4be2d1c}{test\+Case3()}}, \mbox{\hyperlink{q1test_cases_8c_a90c7cb7c1405bb042628c3631d0fa568}{test\+Case4()}}, \mbox{\hyperlink{q1test_cases_8c_ab46667e7f4dc32d3a4e2660ba0c20568}{test\+Case5()}}, \mbox{\hyperlink{q1test_cases_8c_aeb12359662ac449e826155c79d65637c}{test\+Case6()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{q1_8c_a71e22ed5251559e86e909aaa23519387}\label{q1_8c_a71e22ed5251559e86e909aaa23519387}} 
+\index{q1.c@{q1.c}!printArr@{printArr}}
+\index{printArr@{printArr}!q1.c@{q1.c}}
+\doxysubsubsection{\texorpdfstring{printArr()}{printArr()}}
+{\footnotesize\ttfamily void print\+Arr (\begin{DoxyParamCaption}\item[{const int $\ast$}]{r,  }\item[{const int}]{size }\end{DoxyParamCaption})}
+
+
+
+This function is to print the items in the array. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em r} & This is a pointer to an integer. \\
+\hline
+{\em size} & This is a constant integer type of variable that is used for the amount of items needed to be printed as it represent the size. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{q1_8c_a7fcced1f44df1186e51996b015c8e450}{print\+Formatting()}}, \mbox{\hyperlink{q1_8c_ad48a5ec9e381343245916f3e5b2e0d81}{run\+Program()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{q1_8c_a7fcced1f44df1186e51996b015c8e450}\label{q1_8c_a7fcced1f44df1186e51996b015c8e450}} 
+\index{q1.c@{q1.c}!printFormatting@{printFormatting}}
+\index{printFormatting@{printFormatting}!q1.c@{q1.c}}
+\doxysubsubsection{\texorpdfstring{printFormatting()}{printFormatting()}}
+{\footnotesize\ttfamily void print\+Formatting (\begin{DoxyParamCaption}\item[{const int}]{alloc\mbox{[}\+P\+\_\+\+NUM\mbox{]}\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{const int}]{max\mbox{[}\+P\+\_\+\+NUM\mbox{]}\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{const int}]{need\mbox{[}\+P\+\_\+\+NUM\mbox{]}\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{const int}]{avail\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{const int}]{psize,  }\item[{const int}]{rsize }\end{DoxyParamCaption})}
+
+
+
+Printing and displaying the values of all processes and resources from allocation, max, need, available matrix to be displayed to the user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em alloc} & This is a multi dimentional array that is a integer type that is refering to allocation matrix. \\
+\hline
+{\em max} & This is a multi dimentional array that is a integer type that is refering to max matrix. \\
+\hline
+{\em need} & This is a multi dimentional array that is a integer type that is refering to need matrix. \\
+\hline
+{\em avail} & This is a multi dimentional array that is a integer type that is refering to available matrix. \\
+\hline
+{\em psize} & This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+{\em rsize} & This is the size for resources, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{q1_8c_a0ddf1224851353fc92bfbff6f499fa97}{main()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{q1_8c_a409846989ee312c2583134b7f2609a44}\label{q1_8c_a409846989ee312c2583134b7f2609a44}} 
+\index{q1.c@{q1.c}!printSeq@{printSeq}}
+\index{printSeq@{printSeq}!q1.c@{q1.c}}
+\doxysubsubsection{\texorpdfstring{printSeq()}{printSeq()}}
+{\footnotesize\ttfamily void print\+Seq (\begin{DoxyParamCaption}\item[{const int $\ast$}]{r,  }\item[{int}]{flag,  }\item[{const int}]{psize }\end{DoxyParamCaption})}
+
+
+
+This function is to print the sequence after the banker algorithm and if it is a safe or unsafe state. 
+
+\begin{DoxyNote}{Note}
+If it is in a safe state it will print all the sequence accordingly and print safe state./n if it is not a safe state, which will be labeled and print unsafe state. The sequence will still be printed however will be an incomplete sequence shown.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em r} & This is a pointer to an integer to dereference. \\
+\hline
+{\em flag} & This is flag to indicate if it is a complete sequence \\
+\hline
+{\em psize} & This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{q1_8c_ad48a5ec9e381343245916f3e5b2e0d81}\label{q1_8c_ad48a5ec9e381343245916f3e5b2e0d81}} 
+\index{q1.c@{q1.c}!runProgram@{runProgram}}
+\index{runProgram@{runProgram}!q1.c@{q1.c}}
+\doxysubsubsection{\texorpdfstring{runProgram()}{runProgram()}}
+{\footnotesize\ttfamily void run\+Program (\begin{DoxyParamCaption}\item[{const int}]{psize,  }\item[{const int}]{rsize,  }\item[{const int}]{set\+Value }\end{DoxyParamCaption})}
+
+
+
+It is a function to map and run the program. Calling and running the process in order. The values will be return and printed to the terminal to display for the user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em psize} & This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+{\em rsize} & This is the size for resource, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+{\em set\+Value} & It is a indicator, if its 1, it will get inputs from the get\+Input function. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{q1_8c_a0ddf1224851353fc92bfbff6f499fa97}{main()}}, \mbox{\hyperlink{q1_8c_ab472e7182ff625ea19b7e8243a13f054}{cal\+Need()}}, call\+Min\+Resource(), \mbox{\hyperlink{q1_8c_a7fcced1f44df1186e51996b015c8e450}{print\+Formatting()}}, \mbox{\hyperlink{q1_8c_ab2cb143637f7a977d0faec24af809820}{safety()}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{q1_8c_ab2cb143637f7a977d0faec24af809820}\label{q1_8c_ab2cb143637f7a977d0faec24af809820}} 
+\index{q1.c@{q1.c}!safety@{safety}}
+\index{safety@{safety}!q1.c@{q1.c}}
+\doxysubsubsection{\texorpdfstring{safety()}{safety()}}
+{\footnotesize\ttfamily void safety (\begin{DoxyParamCaption}\item[{int}]{alloc\mbox{[}\+P\+\_\+\+NUM\mbox{]}\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{const int}]{max\mbox{[}\+P\+\_\+\+NUM\mbox{]}\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{int}]{need\mbox{[}\+P\+\_\+\+NUM\mbox{]}\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{const int}]{avail\mbox{[}\+R\+\_\+\+NUM\mbox{]},  }\item[{const int}]{psize,  }\item[{const int}]{rsize }\end{DoxyParamCaption})}
+
+
+
+This function is the bankers algorithm. This process of this function\+: 
+
+
+\begin{DoxyItemize}
+\item Checks the count with the process size if all processes have been ran.
+\item Flag it to check if can break to exit the loop.
+\item Check the first unvisted process.
+\item It then check each resources, it will break the out of the loop if it requires more than the current available resource. It will no longer run any processes.
+\item After, if process has all the resources it needs, it will add it in the safe sequence, it will also ammend it as visted process.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em alloc} & This is a multi dimentional array that is a integer type that is refering to allocation matrix. \\
+\hline
+{\em max} & This is an integer multi dimensional max array for contains processes and resource size for the max matrix. \\
+\hline
+{\em need} & This is an integer multi dimensional need array for contains processes and resource size for the need matrix. \\
+\hline
+{\em avail} & This is a multi dimentional array that is a integer type that is refering to available matrix. \\
+\hline
+{\em psize} & This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+{\em rsize} & This is the size for resource, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{q1_8c_ad48a5ec9e381343245916f3e5b2e0d81}{run\+Program()}}, \mbox{\hyperlink{q1_8c_a7fcced1f44df1186e51996b015c8e450}{print\+Formatting()}}, \mbox{\hyperlink{q1_8c_a409846989ee312c2583134b7f2609a44}{print\+Seq()}}, \mbox{\hyperlink{q1_8c_a0ddf1224851353fc92bfbff6f499fa97}{main()}}, \mbox{\hyperlink{q1_8h}{q1.\+h}} 
+\end{DoxySeeAlso}

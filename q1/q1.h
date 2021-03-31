@@ -3,7 +3,6 @@
 /*!
 \file q1.h
 \author Jodie Moh
-\par email:
 \date 24/03/2021
 \brief
 This is a header file to q1.c, 

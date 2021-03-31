@@ -5,18 +5,20 @@
 \author Jodie Moh
 \author Zhei Wei
 \author Aloysius Wong
-\par email:
-\date 
+\date 31/03/2021
 \brief
 This is a preset test case values file to q2.c.
 */
 /* End Header
 *******************************************************************/
 /**
- * @brief This function changes the values, copied from the preset test case to proceed with the dynamic memory allocation approaches.
+ * @brief This function changes the values, copied from the preset test case 
+ * to proceed with the dynamic memory allocation approaches.
  * 
- * @param MEM_PART Integer type variable for memory part. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param PROC_PART Integer type variable for process part. It is also constant in order to make its value fix, to prevent changes in the underlying value.
+ * @param MEM_PART Integer type variable for memory part. It is also constant 
+ * in order to make its value fix, to prevent changes in the underlying value.
+ * @param PROC_PART Integer type variable for process part. It is also constant 
+ * in order to make its value fix, to prevent changes in the underlying value.
  * @param m This is a pointer to an integer to dereference memory value.
  * @param p This is a pointer to an integer to dereference process value.
  * @see firstFit(), bestFit(), worstFit(), runAll()

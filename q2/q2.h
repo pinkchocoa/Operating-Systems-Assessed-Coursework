@@ -5,8 +5,7 @@
 \author Jodie Moh
 \author Zhei Wei
 \author Aloysius Wong
-\par email:
-\date 
+\date 31/03/2021
 \brief
 This is the header file for q2.c.
 */

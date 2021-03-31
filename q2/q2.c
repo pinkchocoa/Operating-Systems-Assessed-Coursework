@@ -5,14 +5,13 @@
 \author Jodie Moh
 \author Zhei Wei
 \author Aloysius Wong
-\par email:
-\date 
+\date 31/03/2021
 \brief
 Write a C programming which is to simulate the functions of OS to
 implement these three dynamic memory allocation approaches: First-fit, 
 Best-fit and Worst-fit and compare the results.
 
-If it is in the safe state, your Banker’s algorithm need print out
+If it is in the safe state, algorithm need print out
 (display) the execution sequences in which these processes may 
 complete on the screen. 
 
@@ -31,8 +30,11 @@ worst-fit algorithms allocate 10 input processes with different sizes
 
 /**
  * @brief This is the main function for the program. 
- * @brief The main function processes if the users wants to use preset testcases, q2testCases.c and also limit to only legal inputs are allowed.
- * @param argc This is refering the number of strings, argument count passed into the program from command line.
+ * @brief The main function processes if the users wants to use preset 
+ *        testcases, q2testCases.c and also limit to only legal inputs 
+ *        are allowed.
+ * @param argc This is refering the number of strings, argument count passed 
+ *             into the program from command line.
  * @param argv This is refering to the array of arguments.
  * @warning Memory and Process max size limit is 100.
  * @note There are only 2 preset test cases available.
@@ -53,7 +55,7 @@ int main(int argc, char* argv[])
                 break;
         }
     }
-    else if(argc == 3) /*If memory and process part is more than limit values.*/
+    else if(argc == 3)/*If memory and process part is more than limit values.*/
     {
         MEM_PART = atoi(argv[1]);
         PROC_PART = atoi(argv[2]);
@@ -62,7 +64,7 @@ int main(int argc, char* argv[])
         else
             runProgram(1);
     }
-    else /*If invalid inputs, the program will keep requesting the same input.*/
+    else/*If invalid inputs, the program will keep requesting the same input.*/
     {
         printf("Zero, One or Two arguments expected.\n");
         printf("One argument: Test Case Number.\n");
@@ -75,12 +77,15 @@ int main(int argc, char* argv[])
 /**
  * @brief Getting process input from the user.
  * This process of this function:
- *     - Program request a statement for the user to enter the size of the partition.
+ *     - Program request a statement for the user to enter the size of the 
+ *       partition.
  *     - If it is invalid it will ask for the same request statment again.
  *     - It clears the buffer for the next scan.
  *
- * @param a This is an integer a array, it size of this array is refering to the size of the set process.
- * @param size This is a constant integer type of variable that is used for the amount of items needed to be printed as it represent the size.
+ * @param a This is an integer a array, it size of this array is refering to 
+ *          the size of the set process.
+ * @param size This is a constant integer type of variable that is used for 
+ *          the amount of items needed to be printed as it represent the size.
  * @note If the input is invalid, it will ask again.
  * @see q2.h
  */
@@ -97,11 +102,17 @@ void getProcessInput(int a[PROC_NUM], const int size)
 }
 
 /**
- * @brief This function is to format and print out the results of the dynamic memory allocation approaches.
+ * @brief This function is to format and print out the results of the dynamic 
+ *        memory allocation approaches.
  * 
- * @param m This is an integer array that stores memory value. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param p This is an integer array that stores process value. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param f This is an integer array that is meant to differentiate if the memory part is available or unavailable. 
+ * @param m This is an integer array that stores memory value. It is also 
+ *          constant in order to make its value fix, to prevent changes in 
+ *          the underlying value.
+ * @param p This is an integer array that stores process value. It is also 
+ *          constant in order to make its value fix, to prevent changes in 
+ *          the underlying value.
+ * @param f This is an integer array that is meant to differentiate if the 
+ *          memory part is available or unavailable. 
  */
 void printRes(const int m[MEM_NUM], const int p[PROC_NUM], const int f[MEM_NUM])
 {
@@ -131,7 +142,8 @@ void printRes(const int m[MEM_NUM], const int p[PROC_NUM], const int f[MEM_NUM])
 }
 
 /**
- * @brief This function is use to print the remaining input to show the working process after using the dynamic memory allocation approaches. 
+ * @brief This function is use to print the remaining input to show the 
+ *        working process after using the dynamic memory allocation approaches. 
  * 
  * @param p This is an integer type variable that request process value.
  * @param m This is an integer type variable that request memory value.
@@ -151,16 +163,25 @@ void printInput(int p, int m, int pIdx, int mIdx)
 
 /*First-fit:  Allocate the first hole that is big enough*/
 /**
- * @brief This is one of the dynamic memory allocation approaches: <b>First-Fit</b>.\n
- * The first-fit will fit the data in the memory from the beginning available memory to the last memory. Also the memory space must be at least big enough to house the data.\n
+ * @brief This is one of the dynamic memory allocation approaches: 
+ *        <b>First-Fit</b>.\n
+ * The first-fit will fit the data in the memory from the beginning available 
+ * memory to the last memory. Also the memory space must be at least big enough 
+ * to house the data.\n
  * First-Fit Algorithm:
  *     - Iterate through Memory parts and Process Part
- *     - Starting and select from the first process part and fit in the a available memory and the memory must be big enough to house the data.
+ *     - Starting and select from the first process part and fit in the a 
+ *       available memory and the memory must be big enough to house the data.
  *     - Then it call for printRes() function to print.
- *     - After inserting the process to the suitable memory, it sets inUse[] array to an integer to indicate that its used.
+ *     - After inserting the process to the suitable memory, it sets inUse[] 
+ *       array to an integer to indicate that its used.
  *     - The loop will continue.
- * @param m This is an integer array that stores memory value. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param p This is an integer array that stores process value. It is also constant in order to make its value fix, to prevent changes in the underlying value.
+ * @param m This is an integer array that stores memory value. It is also 
+ *          constant in order to make its value fix, to prevent changes in 
+ *          the underlying value.
+ * @param p This is an integer array that stores process value. It is also 
+ *          constant in order to make its value fix, to prevent changes in 
+ *          the underlying value.
  */
 void firstFit(const int m[MEM_NUM], const int p[PROC_NUM])
 {
@@ -194,17 +215,28 @@ must search entire list, unless ordered by size.
 Produces the smallest leftover hole
 */
 /**
- * @brief This is one of the dynamic memory allocation approaches: <b>Best-Fit</b>.\n
- * Allocate the smallest hole that is big enough must search entire list, unless ordered by size. Produces the smallest leftover hole.\n
+ * @brief This is one of the dynamic memory allocation approaches: 
+ *        <b>Best-Fit</b>.\n
+ * Allocate the smallest hole that is big enough must search entire list, 
+ * unless ordered by size. Produces the smallest leftover hole.\n
  * Best-Fit Algorithm:
  *     - Iterate through Memory parts and Process Part
- *     - Starting and select from the first process part and fit in the a available memory that is closest and bigger to the process value to house the data.
- *     - When selecting the process, the memory parts compares with each other to see with is the best fit for the current selected process value.
+ *     - Starting and select from the first process part and fit in the a 
+ *       available memory that is closest and bigger to the process value 
+ *       to house the data.
+ *     - When selecting the process, the memory parts compares with each 
+ *       other to see with is the best fit for the current selected process 
+ *       value.
  *     - Then it call for printRes() function to print.
- *     - After inserting the process to the suitable memory, it sets inUse[] array to an integer to indicate that its used.
+ *     - After inserting the process to the suitable memory, it sets inUse[] 
+ *       array to an integer to indicate that its used.
  *     - The loop will continue.
- * @param m This is an integer array that stores memory value. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param p This is an integer array that stores process value. It is also constant in order to make its value fix, to prevent changes in the underlying value.
+ * @param m This is an integer array that stores memory value. It is also 
+ *          constant in order to make its value fix, to prevent changes in 
+ *          the underlying value.
+ * @param p This is an integer array that stores process value. It is also 
+ *          constant in order to make its value fix, to prevent changes in 
+ *          the underlying value.
  */
 void bestFit(const int m[MEM_NUM], const int p[PROC_NUM])
 {
@@ -223,16 +255,19 @@ void bestFit(const int m[MEM_NUM], const int p[PROC_NUM])
         /*iterate through the memory paritions*/
         for (i = 0; i < MEM_PART; i++)
         {
-            /*check if memory partition is taken and mem partition is bigger then input process*/
+            /*check if memory partition is taken and mem partition is bigger 
+            then input process*/
             if(inUse[i] == -1 && m[i] >= p[j])
             {
                 if(s == -1) s = i; /*if s is empty store it into smallest*/
-                /*if smallest is smaller then the next mem partition then replaces and store in smallest*/
+                /*if smallest is smaller then the next mem partition then 
+                replaces and store in smallest*/
                 if(m[i] < m[s]) 
                     s = i;
             }
         }
-        /*if smallest not empty then assign the current input process to the smallest mem partiton stored in smallest*/
+        /*if smallest not empty then assign the current input process to the 
+        smallest mem partiton stored in smallest*/
         if(s != -1)
         {   
             inUse[s] = j; 
@@ -250,17 +285,28 @@ must also search entire list
 Produces the largest leftover hole
 */
 /**
- * @brief This is one of the dynamic memory allocation approaches: <b>Worse-Fit</b>.\n
- * Allocate the largest hole must also search entire list. Produces the largest leftover hole.\n
+ * @brief This is one of the dynamic memory allocation approaches: 
+ * <b>Worse-Fit</b>.\n
+ * Allocate the largest hole must also search entire list. Produces 
+ * the largest leftover hole.\n
  * Worse-Fit Algorithm:
  *     - Iterate through Memory parts and Process Part
- *     - Starting and select from the first process part and fit in the a available memory that is closest and bigger to the process value to house the data.
- *     - It identifies the biggest available memory by iterating the memory to subtract the selected process. The biggest subtraction value will be selected to house the select process.
+ *     - Starting and select from the first process part and fit in the a 
+ *       available memory that is closest and bigger to the process value to 
+ *       house the data.
+ *     - It identifies the biggest available memory by iterating the memory to 
+ *       subtract the selected process. The biggest subtraction value will be 
+ *       selected to house the select process.
  *     - Then it call for printRes() function to print.
- *     - After inserting the process to the suitable memory, it sets inUse[] array to an integer to indicate that its used.
+ *     - After inserting the process to the suitable memory, it sets inUse[] 
+ *       array to an integer to indicate that its used.
  *     - The loop will continue.
- * @param m This is an integer array that stores memory value. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param p This is an integer array that stores process value. It is also constant in order to make its value fix, to prevent changes in the underlying value.
+ * @param m This is an integer array that stores memory value. It is also 
+ *          constant in order to make its value fix, to prevent changes in 
+ *          the underlying value.
+ * @param p This is an integer array that stores process value. It is also 
+ *          constant in order to make its value fix, to prevent changes in 
+ *          the underlying value.
  */
 void worstFit(const int m[MEM_NUM], const int p[PROC_NUM])
 {
@@ -282,7 +328,8 @@ void worstFit(const int m[MEM_NUM], const int p[PROC_NUM])
             /*Check if the memory is not used and process bigger then memory value*/
             if(inUse[i] == -1 && m[i] >= p[j])
             {
-                /*Subtract the memory to process and updates the worstIndex which store the biggest subtracted value.*/
+                /*Subtract the memory to process and updates the worstIndex 
+                which store the biggest subtracted value.*/
                 if(worstIndex == -1)
                 {
                     biggestGap = m[i] - p[j];
@@ -319,7 +366,8 @@ void runAll()
 }
 
 /**
- * @brief A selection case where allow the user to select which dynamic memory allocation approaches from the given choices. The user can also request all.
+ * @brief A selection case where allow the user to select which dynamic memory 
+ * allocation approaches from the given choices. The user can also request all.
  * @note If the user input is invalid, it will ask again.
  * @param x The input value from the user.
  * @see firstFit(), bestFit(), worstFit()
@@ -339,13 +387,17 @@ void runAsk(int x)
 }
 
 /**
- * @brief A function that prints the statement for runAsk() for dynamic memory allocation approaches choices.
+ * @brief A function that prints the statement for runAsk() for dynamic memory 
+ * allocation approaches choices.
  * @note If the user input is invalid, it will ask again.
  */
 void ask()
 {
     int x = 0;
-    while(printf("\n0 for All\n1 for First Fit\n2 for Best Fit\n3 for Worst Fit\n4 for Exit\nEnter your option: ")
+    while
+        (printf("\n0 for All\n1 for First Fit\n") &&
+        printf("2 for Best Fit\n3 for Worst Fit\n4 for Exit\n") &&
+        printf("Enter your option: ")
         && scanf("%d", &x) != 1) /*this loops while the input is invalid*/
         /*aka it will ask again*/
             scanf("%*[^\n]%*c"); /*clear buffer for next scanf*/
@@ -353,9 +405,11 @@ void ask()
 }
 
 /**
- * @brief This function are print statements to request for the user to enter its desire values for memory and process values.
+ * @brief This function are print statements to request for the user to enter 
+ * its desire values for memory and process values.
  * 
- * @param getInput Gets the input from the user and store it in this integer type variable.
+ * @param getInput Gets the input from the user and store it in this integer 
+ * type variable.
  */
 void runProgram(int getInput)
 {

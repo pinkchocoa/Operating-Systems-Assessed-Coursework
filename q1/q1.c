@@ -3,8 +3,7 @@
 /*!
 \file q1.c
 \author Jodie Moh
-\par email:
-\date 
+\date 24/03/2021
 \brief
 Write a C programming which is to simulate the functions of the OS
 to implement the Banker's algorithm, to detect if the system is in
@@ -25,13 +24,17 @@ point of time.
 #include "q1testCases.c"
 
 /**
- * @brief This is the main function for the program. The main function processes if the users wants to use preset testcases, q1testCases.c and also limit to only legal inputs are allowed./n
+ * @brief This is the main function for the program. The main function 
+ * processes if the users wants to use preset testcases, q1testCases.c and 
+ * also limit to only legal inputs are allowed./n
  * The user can also change the matrix size from q1.h header file.
- * @param argc This is refering the number of strings, argument count passed into the program from command line.
+ * @param argc This is refering the number of strings, argument count passed 
+ * into the program from command line.
  * @param argv This is refering to the array of arguments.
  * @warning Processes and Resources max size limit is 100.
  * @note <b>./a.exe #</b>, while <b>#</b> are digits.
- * @see runProgram(), testCase1(), testCase2(), testCase3(), testCase4(), testCase5(), testCase6(),
+ * @see runProgram(), testCase1(), testCase2(), testCase3(), testCase4(), 
+ * testCase5(), testCase6()
  */
 int main(int argc, char* argv[])
 {
@@ -63,7 +66,8 @@ int main(int argc, char* argv[])
     {
         psize = atoi(argv[1]);
         rsize = atoi(argv[2]);
-        if (psize > 100 || rsize > 100 || psize <= 0 || rsize <= 0) /*Check for max size for process and resources*/
+        /*Check for max size for process and resources*/
+        if (psize > 100 || rsize > 100 || psize <= 0 || rsize <= 0)
             printf("There is a limit of 1-100 for both sizes.\n");
         else
             runProgram(psize, rsize, 1);
@@ -79,12 +83,17 @@ int main(int argc, char* argv[])
     return 0;
 }
 /**
- * @brief This is a method function that gets the desire available resource input from the user. 
- * It will loop and ask for the same input if it is given a invalid input, it will clear its buffer and ask again. 
- * Furthermore, the number of inputs from users are limited by the resource size value. Hence it will only ask 4 times if resourse size value is set as 4.
+ * @brief This is a method function that gets the desire available resource 
+ * input from the user. 
+ * It will loop and ask for the same input if it is given a invalid input, it 
+ * will clear its buffer and ask again. 
+ * Furthermore, the number of inputs from users are limited by the resource 
+ * size value. Hence it will only ask 4 times if resourse size value is set as 4.
  * 
- * @param avail This is an integer type of array that is refering to the available resources that will be used to store values from the user.
- * @param rsize This is an integer type of variable that is refering to the resource size, that will be used to limit the amount of input.
+ * @param avail This is an integer type of array that is refering to the 
+ * available resources that will be used to store values from the user.
+ * @param rsize This is an integer type of variable that is refering to the 
+ * resource size, that will be used to limit the amount of input.
  * @see getInputs()
  */
 void getResInput(int avail[R_NUM], const int rsize)
@@ -98,11 +107,15 @@ void getResInput(int avail[R_NUM], const int rsize)
 }
 
 /**
- * @brief Get Array Input object, using a multi dimensional array to store the user input according to the size of processes and resources set from q1.h.
+ * @brief Get Array Input object, using a multi dimensional array to store the 
+ * user input according to the size of processes and resources set from q1.h.
  * 
- * @param array This is an integer multi dimensional array for processes and resource size.
- * @param psize This is a constant integer type of variable that is refering to the process size set from q1.h.
- * @param rsize This is a constant integer type of variable that is refering to the resource size set from q1.h.
+ * @param array This is an integer multi dimensional array for processes and 
+ * resource size.
+ * @param psize This is a constant integer type of variable that is refering to
+ * the process size set from q1.h.
+ * @param rsize This is a constant integer type of variable that is refering to 
+ * the resource size set from q1.h.
  * @see getInputs()
  */
 void getArrayInput(int array[P_NUM][R_NUM], const int psize, const int rsize)
@@ -119,7 +132,8 @@ void getArrayInput(int array[P_NUM][R_NUM], const int psize, const int rsize)
  * @brief This function is to print the items in the array.
  * 
  * @param r This is a pointer to an integer.
- * @param size This is a constant integer type of variable that is used for the amount of items needed to be printed as it represent the size.
+ * @param size This is a constant integer type of variable that is used for the
+ * amount of items needed to be printed as it represent the size.
  * @see printFormatting(), runProgram()
  */
 void printArr(const int* r, const int size)
@@ -130,14 +144,23 @@ void printArr(const int* r, const int size)
 }
 
 /**
- * @brief Printing and displaying the values of all processes and resources from allocation, max, need, available matrix to be displayed to the user.
+ * @brief Printing and displaying the values of all processes and resources 
+ * from allocation, max, need, available matrix to be displayed to the user.
  * 
- * @param alloc This is a multi dimentional array that is a integer type that is refering to allocation matrix.
- * @param max This is a multi dimentional array that is a integer type that is refering to max matrix.
- * @param need This is a multi dimentional array that is a integer type that is refering to need matrix.
- * @param avail This is a multi dimentional array that is a integer type that is refering to available matrix.
- * @param psize This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param rsize This is the size for resources, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
+ * @param alloc This is a multi dimentional array that is a integer type that 
+ * is refering to allocation matrix.
+ * @param max This is a multi dimentional array that is a integer type that is
+ * refering to max matrix.
+ * @param need This is a multi dimentional array that is a integer type that is
+ * refering to need matrix.
+ * @param avail This is a multi dimentional array that is a integer type that 
+ * is refering to available matrix.
+ * @param psize This is the size for processes, it is a integer type. It is 
+ * also constant in order to make its value fix, to prevent changes in the 
+ * underlying value.
+ * @param rsize This is the size for resources, it is a integer type. It is
+ * also constant in order to make its value fix, to prevent changes in the 
+ * underlying value.
  * @see main()
  */
 void printFormatting(const int alloc[P_NUM][R_NUM], 
@@ -157,18 +180,27 @@ const int avail[R_NUM], const int psize, const int rsize)
         printArr(need[i], rsize); /*Printing for need.*/
         printf("\t   ");
         if (i == 0)
-            printArr(avail, rsize); /*Printing for available remaing after it is done iterating process size.*/
+            /*Printing for available remaing after it is done iterating 
+            process size.*/
+            printArr(avail, rsize); 
     }
     printf("\n\n");
 }
 
 /**
- * @brief This function is to add up all the allocation processes resources to check if the total allocation value is valid. Therefore, it will iterate through the resource size and process to accumulate.
+ * @brief This function is to add up all the allocation processes resources to
+ * check if the total allocation value is valid. Therefore, it will iterate 
+ * through the resource size and process to accumulate.
  * 
- * @param a This is an integer multi dimensional allocation array that contains processes and resource size for the max matrix.
+ * @param a This is an integer multi dimensional allocation array that contains
+ * processes and resource size for the max matrix.
  * @param minR This is and array to store the minimum resource value.
- * @param psize This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param rsize This is the size for resource, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
+ * @param psize This is the size for processes, it is a integer type. It is 
+ * also constant in order to make its value fix, to prevent changes in the 
+ * underlying value.
+ * @param rsize This is the size for resource, it is a integer type. It is also
+ * constant in order to make its value fix, to prevent changes in the 
+ * underlying value.
  * @see runProgram(), main()
  */
 void calMinResource(const int a[P_NUM][R_NUM], int minR[R_NUM], 
@@ -181,13 +213,22 @@ const int psize, const int rsize)
 }
 
 /**
- * @brief This function is to calculate the need matrix but subtracting the matrix (max matrix - allocation matrix = need matrix) and store the matrix values in multi dimention need array.
+ * @brief This function is to calculate the need matrix but subtracting the 
+ * matrix (max matrix - allocation matrix = need matrix) and store the matrix 
+ * values in multi dimention need array.
  * 
- * @param a This is an integer multi dimensional allocation array that contains processes and resource size for the max matrix.
- * @param max This is an integer multi dimensional max array for contains processes and resource size for the max matrix.
- * @param need This is an integer multi dimensional need array for contains processes and resource size for the need matrix.
- * @param psize This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param rsize This is the size for resource, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
+ * @param a This is an integer multi dimensional allocation array that 
+ * contains processes and resource size for the max matrix.
+ * @param max This is an integer multi dimensional max array for contains 
+ * processes and resource size for the max matrix.
+ * @param need This is an integer multi dimensional need array for contains 
+ * processes and resource size for the need matrix.
+ * @param psize This is the size for processes, it is a integer type. It is
+ * also constant in order to make its value fix, to prevent changes in the 
+ * underlying value.
+ * @param rsize This is the size for resource, it is a integer type. It is 
+ * also constant in order to make its value fix, to prevent changes in the 
+ * underlying value.
  * @see main()
  */
 void calNeed(const int a[P_NUM][R_NUM], 
@@ -197,17 +238,25 @@ const int psize, const int rsize)
     int i = 0, j = 0;
     for(i = 0; i < psize; i++) /*Iterating through process size*/
         for(j = 0; j < rsize; j++) /*Iterating through resource size*/
-            need[i][j] = max[i][j]-a[i][j]; /*Using max matrix - allocation matrix to get need matrix and store them in need multi dimentional array*/
+         /*Using max matrix - allocation matrix to get need matrix and 
+         store them in need multi dimentional array*/
+            need[i][j] = max[i][j]-a[i][j];
 }
 
 /**
- * @brief This function is to print the sequence after the banker algorithm and if it is a safe or unsafe state.
- * @note If it is in a safe state it will print all the sequence accordingly and print safe state./n
- * if it is not a safe state, which will be labeled and print unsafe state. The sequence will still be printed however will be an incomplete sequence shown.
+ * @brief This function is to print the sequence after the banker algorithm 
+ * and if it is a safe or unsafe state.
+ * @note If it is in a safe state it will print all the sequence accordingly
+ * and print safe state./n
+ * if it is not a safe state, which will be labeled and print unsafe state. 
+ * The sequence will still be printed however will be an incomplete sequence 
+ * shown.
  *
  * @param r This is a pointer to an integer to dereference.
  * @param flag 	This is flag to indicate if it is a complete sequence
- * @param psize This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
+ * @param psize This is the size for processes, it is a integer type. It is 
+ * also constant in order to make its value fix, to prevent changes in the 
+ * underlying value.
  */
 void printSeq(const int* r, int flag, const int psize)
 {
@@ -231,20 +280,31 @@ void printSeq(const int* r, int flag, const int psize)
 }
 
 /**
- * @brief This function is meant to be a safety net where is checks through again to see if all process have been ran./n
+ * @brief This function is the bankers algorithm.
  * This process of this function:
  *     - Checks the count with the process size if all processes have been ran.
  *     - Flag it to check if can break to exit the loop.
  *     - Check the first unvisted process.
- *     - It then check each resources, it will break the out of the loop if it requires more than the current available resource. It will no longer run any processes.
- *     - After, if process has all the resources it needs, it will add it in the safe sequence, it will also ammend it as visted process.
+ *     - It then check each resources, it will break the out of the loop if it 
+ *       requires more than the current available resource. It will no longer 
+ *       run any processes.
+ *     - After, if process has all the resources it needs, it will add it in 
+ *       the safe sequence, it will also ammend it as visted process.
  *
- * @param alloc This is a multi dimentional array that is a integer type that is refering to allocation matrix.
- * @param max This is an integer multi dimensional max array for contains processes and resource size for the max matrix.
- * @param need This is an integer multi dimensional need array for contains processes and resource size for the need matrix.
- * @param avail This is a multi dimentional array that is a integer type that is refering to available matrix.
- * @param psize This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param rsize This is the size for resource, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
+ * @param alloc This is a multi dimentional array that is a integer type that 
+ *             is refering to allocation matrix.
+ * @param max This is an integer multi dimensional max array for contains 
+ *             processes and resource size for the max matrix.
+ * @param need This is an integer multi dimensional need array for contains 
+ *             processes and resource size for the need matrix.
+ * @param avail This is a multi dimentional array that is a integer type that 
+ *              is refering to available matrix.
+ * @param psize This is the size for processes, it is a integer type. It is 
+                also constant in order to make its value fix, to prevent 
+                changes in the underlying value.
+ * @param rsize This is the size for resource, it is a integer type. It is 
+                also constant in order to make its value fix, to prevent 
+                changes in the underlying value.
  * @see runProgram(), printFormatting(), printSeq(), main(), q1.h
  */
 void safety(int alloc[P_NUM][R_NUM], 
@@ -304,8 +364,12 @@ const int avail[R_NUM], const int psize, const int rsize)
 /**
  * @brief Get the prints statements to get the user inputs.
  * 
- * @param psize This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param rsize This is the size for resource, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
+ * @param psize This is the size for processes, it is a integer type. It is 
+                also constant in order to make its value fix, to prevent 
+                changes in the underlying value.
+ * @param rsize This is the size for resource, it is a integer type. It is 
+                also constant in order to make its value fix, to prevent 
+                changes in the underlying value.
  * @see getResInput(), getArrayInput, getArrayInput()
  */
 void getInputs(const int psize, const int rsize)
@@ -319,11 +383,18 @@ void getInputs(const int psize, const int rsize)
 }
 
 /**
- * @brief It is a function to map and run the program. Calling and running the process in order. The values will be return and printed to the terminal to display for the user.
+ * @brief It is a function to map and run the program. Calling and running 
+          the process in order. The values will be return and printed to the 
+          terminal to display for the user.
  * 
- * @param psize This is the size for processes, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param rsize This is the size for resource, it is a integer type. It is also constant in order to make its value fix, to prevent changes in the underlying value.
- * @param setValue It is a indicator, if its 1, it will get inputs from the getInput function.
+ * @param psize This is the size for processes, it is a integer type. It is 
+                also constant in order to make its value fix, to prevent 
+                changes in the underlying value.
+ * @param rsize This is the size for resource, it is a integer type. It is 
+                also constant in order to make its value fix, to prevent 
+                changes in the underlying value.
+ * @param setValue It is a indicator, if its 1, it will get inputs from the 
+                   getInput function.
  * @see main(), calNeed(), callMinResource(), printFormatting(), safety()
  */
 void runProgram(const int psize, const int rsize, const int setValue)

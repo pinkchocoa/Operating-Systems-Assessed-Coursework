@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Q2_Doxy", "index.html", [
+  [ "Dynamic Memory Allocation Algorithm Q2", "index.html", [
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "Globals", "globals.html", [
