@@ -57,8 +57,8 @@ int main(int argc, char* argv[])
     {
         MEM_PART = atoi(argv[1]);
         PROC_PART = atoi(argv[2]);
-        if (MEM_PART > 100 || PROC_PART > 100)
-            printf("There is a limit of 100 for both sizes.\n");
+        if (MEM_PART > 100 || PROC_PART > 100 || MEM_PART <= 0 || PROC_PART <= 0)
+            printf("There is a limit of 1-100 for both sizes.\n");
         else
             runProgram(1);
     }
