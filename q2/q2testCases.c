@@ -3,8 +3,6 @@
 /*!
 \file q2testCases.c
 \author Jodie Moh
-\author Zhei Wei
-\author Aloysius Wong
 \date 31/03/2021
 \brief
 This is a preset test case values file to q2.c.
